@@ -76,7 +76,6 @@ module.exports = {
                 }
             },
             { test: /\.css$/, use: [CssExtractPlugin.loader, 'css-loader'] },
-            { test: /\.less$/, use: [CssExtractPlugin.loader, 'css-loader', 'less-loader'] }
         ],
     },
     plugins: [

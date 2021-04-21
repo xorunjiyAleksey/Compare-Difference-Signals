@@ -1,9 +1,10 @@
 import React from 'react';
+import MainPage from './modules/mainPage/MainPage.jsx';
 
-function App() {
+const App = () => {
     return (
-        <div>
-            Hello world
+        <div className={'main-container'}>
+            <MainPage />
         </div>
     );
 }
