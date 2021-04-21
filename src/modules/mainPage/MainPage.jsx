@@ -1,5 +1,5 @@
 import React from 'react';
-import Top from '../top/Top.jsx';
+import Top from '../sendSignalsModule/SendSignalsModule.jsx';
 import Bottom from '../bottom/Bottom.jsx';
 import {
     Wrapper,
