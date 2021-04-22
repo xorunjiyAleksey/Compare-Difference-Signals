@@ -1,30 +1,31 @@
 import React from 'react';
+import Table from './components/table/Table.jsx';
+import Button from '../components/button/Button.jsx';
 import {
     Wrapper,
     TableModule,
-    Table,
-    CompareButtons,
-    Button,
-    TableDisplay, TableColumn,
+    TableWrapper,
+    CompareButtonWrapper,
 } from './StyledComponent.js';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../../theme/theme.js';
 
 const Bottom = () => {
+    const signalTitle = ["signals id", "name field", "autochartist", "sds"];
+    const compareButtons = ["compare chart patterns", "compare fibonacci patterns", "compare key levels patterns", "compare all"];
     return (
-        <Wrapper data-at={'Table-Container'}>
-            <TableModule data-at={'Table-Container__tableModule'}>
-                <Table data-at={'TableModule__table'}>
-                        <TableColumn data-at={'tableDisplays__TableDisplay'}>
-                            <TableColumn.title/>
-                            <TableColumn.column/>
-                        </TableColumn>
-                </Table>
-                <CompareButtons data-at={'TableModule__compareButtons'}>
-                    <Button data-at={'CompareButtons__button'}>
-                        <Button.text>1</Button.text>
-                    </Button>
-                </CompareButtons>
-            </TableModule>
-        </Wrapper>
+        <ThemeProvider theme={theme}>
+            <Wrapper data-at={'Table-Container'}>
+                <TableModule data-at={'Table-Container__tableModule'}>
+                    <TableWrapper data-at={'TableModule__tableWrapper'}>
+                        {signalTitle.map((title, index) => <Table key={index} title={title}/>)}
+                    </TableWrapper>
+                    <CompareButtonWrapper data-at={'TableModule__compareButtonWrapper'}> 
+                        {compareButtons.map((name, id) => <Button key={id} name={name}/>)} //TODO ID
+                    </CompareButtonWrapper>
+                </TableModule>
+            </Wrapper>
+        </ThemeProvider>
     );
 }
 
