@@ -1,9 +1,7 @@
 import React from 'react';
-import {
-    MainWrapper
-} from './styledComponent.js';
-import SdsService from './sdsService/SdsService';
-import AutoChartistService from './autoChartistService/AutoChartistService';
+import { MainWrapper } from './styledComponent.js';
+import SdsService from './components/sdsService/SdsService.jsx';
+import AutoChartistService from './components/autoChartistService/AutoChartistService.jsx';
 
 const SendSignalsModule = () => {
     return (

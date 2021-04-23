@@ -8,13 +8,13 @@ import {
     CompareButtonWrapper,
 } from './StyledComponent.js';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../../theme/theme.js';
+import { themeTable } from '../../theme/theme.js';
 
 const Bottom = () => {
     const signalTitle = ["signals id", "name field", "autochartist", "sds"];
     const compareButtons = ["compare chart patterns", "compare fibonacci patterns", "compare key levels patterns", "compare all"];
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={themeTable}>
             <Wrapper data-at={'Table-Container'}>
                 <TableModule data-at={'Table-Container__tableModule'}>
                     <TableWrapper data-at={'TableModule__tableWrapper'}>

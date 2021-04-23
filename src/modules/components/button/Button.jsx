@@ -1,17 +1,25 @@
 import React from 'react'
 import {
     ButtonWrapper,
+    LabelContainer,
 } from './StyledComponent.js';
 
 const Button = props => {
-    const{
-        name
-    } = props
+    const {
+        name,
+    } = props;
+
     return (
-        <ButtonWrapper data-at={'CompareButtons__buttonwrapper'}>
+        name.label ?
+            <LabelContainer>
+                <LabelContainer.label>
+                    {name.label}
+                </LabelContainer.label>
+            </LabelContainer>
+        : <ButtonWrapper data-at={'compare-buttons__button-wrapper'}>
             <ButtonWrapper.text children={name}/>
         </ButtonWrapper>
-    )
+    );
 }
 
 export default React.memo(Button);
