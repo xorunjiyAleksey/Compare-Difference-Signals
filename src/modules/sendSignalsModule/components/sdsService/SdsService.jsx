@@ -20,7 +20,7 @@ const SdsService = () => {
         <Wrapper>
             <WrapperContainer>
                 <LabelDiv>
-                    <Label children={'Autochartist service'}></Label>
+                    <Label children={'Sds service'}></Label>
                 </LabelDiv>
                 <InputWrapper>
                     {mockPlaceholder.map((placeholderName, id) =>
@@ -41,8 +41,8 @@ const SdsService = () => {
                             <Button key={id} name={name}/>
                         </InputWrapper.input>
                     )}
-                    <ResponseStatus>
-                    </ResponseStatus>
+                    {/*<ResponseStatus>*/}
+                    {/*</ResponseStatus> открыть когда будут приходить статусы*/}
                 </ButtonDiv>
             </ButtonWrapper>
         </Wrapper>
