@@ -1,24 +1,26 @@
 import React from 'react';
 import {
-    StDiv,
     Label,
     Wrapper,
     LabelDiv,
     ButtonDiv,
     InputWrapper,
     ButtonWrapper,
+    StatusWrapper,
     ResponseStatus,
+    WrapperContainer,
 } from './styledComponent';
 import Button from '../../../components/button/Button.jsx'
 import CustomInput from '../../../components/CustomInput/CustomInput.jsx';
 
 const AutoChartistService = () => {
     const mockPlaceholder = ['', '', 'enter parth to microservice', 'enter chart patterns', 'enter fibonacci patterns', 'enter key levels patterns'];
-    const statusButtons = [{ label: 'sid' }, { label: 'umid' }, 'get signals', 'get signals', 'get signals'];
+    const signalsButtons = [{ label: 'sid' }, { label: 'umid' }, 'get signals', 'get signals', 'get signals', 'get signals'];
+    const statusLabel = ['100', '200', '300', '400', '500'];
 
     return (
         <Wrapper>
-            <StDiv>
+            <WrapperContainer>
                 <LabelDiv>
                     <Label children={'Autochartist service'}></Label>
                 </LabelDiv>
@@ -32,18 +34,25 @@ const AutoChartistService = () => {
                         </InputWrapper.input>
                     )}
                 </InputWrapper>
-            </StDiv>
+            </WrapperContainer>
             <ButtonWrapper>
                 <LabelDiv/>
                 <ButtonDiv>
-                    {statusButtons.map((name, id) =>
-                        <InputWrapper.input>
-                            <Button key={id} name={name}/>
-                        </InputWrapper.input>
+                    {signalsButtons.map((name, id) =>
+                        <InputWrapper.button>
+                            <Button key={id}
+                                    name={name}
+                            />
+                        </InputWrapper.button>
                         )}
-                    <ResponseStatus>
-                    </ResponseStatus>
                 </ButtonDiv>
+                {/*<StatusWrapper>*/}
+                {/*    {statusLabel.map((name, id) =>*/}
+                {/*        <ResponseStatus key={id}*/}
+                {/*                        name={name}*/}
+                {/*        />*/}
+                {/*    )}*/}
+                {/*</StatusWrapper>открыть когда будут приходить статусы*/ }
             </ButtonWrapper>
         </Wrapper>
     );

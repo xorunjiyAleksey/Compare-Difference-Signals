@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
 `;
-export const StDiv = styled.div`
+export const WrapperContainer = styled.div`
   width: 60%;
   flex-wrap: wrap;
   align-content: space-between;
@@ -30,16 +30,30 @@ InputWrapper.input = styled.div`
   height: 30px;
   margin-top: 2%;
 `;
-
-export const ResponseStatus = styled.div`
-  background-color: green;
-  width: 25px;
-  height: 25px;
+InputWrapper.button = styled.div`
+  width: 100%;
+  height: 30px;
+  margin-top: 2%;
 `;
 
-export const ButtonDiv = styled.div``;
+export const ResponseStatus = styled.div`
+  background-color: grey;
+  width: 50px;
+  height: 25px;
+  border-radius: 8px;
+`;
+
+export const ButtonDiv = styled.div`
+  display: flex;
+  flex-direction: column; 
+`;
+export const StatusWrapper = styled.div`
+  display: flex;
+`;
+
 
 export const ButtonWrapper = styled.div`
   width: 35%;
+  padding-top: 3%;
 `;
 
