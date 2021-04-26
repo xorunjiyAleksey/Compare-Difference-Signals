@@ -26,5 +26,6 @@ export const CompareButtonWrapper = styled.div`
 export const TableWrapper = styled.div`
   width: 75%;
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
 `;

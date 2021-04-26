@@ -10,7 +10,7 @@ import {
 import { ThemeProvider } from 'styled-components';
 import { themeTable } from '../../theme/theme.js';
 
-const Bottom = () => {
+const SignalsTable = () => {
     const signalTitle = ["signals id", "name field", "autochartist", "sds"];
     const compareButtons = ["compare chart patterns", "compare fibonacci patterns", "compare key levels patterns", "compare all"];
     return (
@@ -29,4 +29,4 @@ const Bottom = () => {
     );
 }
 
-export default React.memo(Bottom);
+export default React.memo(SignalsTable);
