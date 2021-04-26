@@ -7,6 +7,7 @@ import {
 const Button = props => {
     const {
         name,
+        handleClick,
     } = props;
 
     return (
@@ -16,7 +17,7 @@ const Button = props => {
                     {name.label}
                 </LabelContainer.label>
             </LabelContainer>
-        : <ButtonWrapper data-at={'compare-buttons__button-wrapper'}>
+        : <ButtonWrapper data-at={'compare-buttons__button-wrapper'} onClick={handleClick}>
             <ButtonWrapper.text children={name}/>
         </ButtonWrapper>
     );
