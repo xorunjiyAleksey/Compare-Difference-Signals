@@ -13,7 +13,11 @@ import {
 import Button from '../../../components/button/Button.jsx'
 import CustomInput from '../../../components/CustomInput/CustomInput.jsx';
 
-const AutoChartistService = () => {
+const AutoChartistService = props => {
+    const {
+        isEnable
+    } = props;
+    console.log(isEnable)
     const mockPlaceholder = ['', '', 'enter parth to microservice', 'enter chart patterns', 'enter fibonacci patterns', 'enter key levels patterns'];
     const signalsButtons = [{ label: 'sid' }, { label: 'umid' }, 'get signals', 'get signals', 'get signals', 'get signals'];
     const statusLabel = ['100', '200', '300', '400', '500'];
