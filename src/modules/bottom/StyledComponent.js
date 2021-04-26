@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  width: ${props => props.theme.wrapperWidth};
+  height: ${props => props.theme.wrapperHeight};
   background-color: ${props => props.theme.pagebackcolor};
   display: flex;
 `;

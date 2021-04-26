@@ -1,0 +1,61 @@
+import React from 'react';
+import {
+    Label,
+    Wrapper,
+    LabelDiv,
+    ButtonDiv,
+    InputWrapper,
+    ButtonWrapper,
+    StatusWrapper,
+    ResponseStatus,
+    WrapperContainer,
+} from './styledComponent';
+import Button from '../../../components/button/Button.jsx'
+import CustomInput from '../../../components/CustomInput/CustomInput.jsx';
+
+const AutoChartistService = () => {
+    const mockPlaceholder = ['', '', 'enter parth to microservice', 'enter chart patterns', 'enter fibonacci patterns', 'enter key levels patterns'];
+    const signalsButtons = [{ label: 'sid' }, { label: 'umid' }, 'get signals', 'get signals', 'get signals', 'get signals'];
+    const statusLabel = ['100', '200', '300', '400', '500'];
+
+    return (
+        <Wrapper>
+            <WrapperContainer>
+                <LabelDiv>
+                    <Label children={'Autochartist service'}></Label>
+                </LabelDiv>
+                <InputWrapper>
+                    {mockPlaceholder.map((placeholderName, id) =>
+                        <InputWrapper.input>
+                            <CustomInput
+                                key={id}
+                                placeholderName={placeholderName}
+                            />
+                        </InputWrapper.input>
+                    )}
+                </InputWrapper>
+            </WrapperContainer>
+            <ButtonWrapper>
+                <LabelDiv/>
+                <ButtonDiv>
+                    {signalsButtons.map((name, id) =>
+                        <InputWrapper.button>
+                            <Button key={id}
+                                    name={name}
+                            />
+                        </InputWrapper.button>
+                        )}
+                </ButtonDiv>
+                {/*<StatusWrapper>*/}
+                {/*    {statusLabel.map((name, id) =>*/}
+                {/*        <ResponseStatus key={id}*/}
+                {/*                        name={name}*/}
+                {/*        />*/}
+                {/*    )}*/}
+                {/*</StatusWrapper>открыть когда будут приходить статусы*/ }
+            </ButtonWrapper>
+        </Wrapper>
+    );
+}
+
+export default React.memo(AutoChartistService);
