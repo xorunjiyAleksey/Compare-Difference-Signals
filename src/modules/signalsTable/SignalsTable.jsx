@@ -21,7 +21,7 @@ const SignalsTable = () => {
                         {signalTitle.map((title, index) => <Table key={index} title={title}/>)}
                     </TableWrapper>
                     <CompareButtonWrapper data-at={'TableModule__compareButtonWrapper'}> 
-                        {compareButtons.map((name, id) => <Button key={id} name={name}/>)} //TODO ID
+                        {compareButtons.map((name, id) => <Button key={id} name={name}/>)}
                     </CompareButtonWrapper>
                 </TableModule>
             </Wrapper>
