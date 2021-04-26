@@ -1,1 +1,1 @@
-export const url = 'https://private-anon-560e749e9c-tradingservicesv2.apiary-mock.com/srvgtw/autochartist/v1/';
+export const url = 'https://dev-services.maximarkets.org/srvgtw/autochartist/v1/';

@@ -13,7 +13,7 @@ import Button from '../../../components/button/Button.jsx'
 import CustomInput from '../../../components/CustomInput/CustomInput.jsx';
 
 const SdsService = () => {
-    const mockPlaceholder = ['enter parth to microservice', 'enter chart patterns', 'enter fibonacci patterns', 'enter key levels patterns'];
+    const mockPlaceholder = [{microservice: 'enter parth to microservice'}, {chartPatterns: 'enter chart patterns'}, {fibonacciPatterns:'enter fibonacci patterns'}, {keyLevelsPatterns: 'enter key levels patterns'}];
     const statusButtons = [ 'get signals', 'get signals', 'get signals', 'get signals'];
 
     return (

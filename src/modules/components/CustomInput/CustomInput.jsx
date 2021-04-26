@@ -7,11 +7,11 @@ const CustomInput = props => {
         handleChange,
         placeholderName
     } = props;
-
     return (
         <Input value={value}
+               name={Object.keys(placeholderName)}
                onChange={handleChange}
-               placeholder={placeholderName}
+               placeholder={Object.values(placeholderName)}
         />
     );
 };

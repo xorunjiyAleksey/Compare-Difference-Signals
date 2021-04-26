@@ -22,7 +22,7 @@ const AutoChartistService = props => {
 
     console.log('sendSignal', sendSignal, 'btnStatus' ,btnStatus)
 
-    const mockPlaceholder = ['', '', 'enter parth to microservice', 'enter chart patterns', 'enter fibonacci patterns', 'enter key levels patterns'];
+    const mockPlaceholder = [{ sid: '' }, { umid: '' }, {microservice: 'enter parth to microservice'}, {chartPatterns: 'enter chart patterns'}, {fibonacciPatterns:'enter fibonacci patterns'}, {keyLevelsPatterns: 'enter key levels patterns'}];
     const signalsButtons = [{ label: 'sid' }, { label: 'umid' }, 'get signals', 'get signals', 'get signals', 'get signals'];
     const statusLabel = ['100', '200', '300', '400', '500'];
 
@@ -31,7 +31,6 @@ const AutoChartistService = props => {
         sid: '',
         umid: '',
     });
-
     const handleChange =  event => {
         const { value } = event.target;
         setSignalData(value)
