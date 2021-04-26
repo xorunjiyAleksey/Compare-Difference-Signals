@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
 `;
 export const WrapperContainer = styled.div`
   width: 60%;
-  flex-wrap: wrap;
-  align-content: space-between;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const LabelDiv = styled.div`
@@ -23,12 +23,21 @@ export const Label = styled.label`
 `;
 
 export const InputWrapper = styled.div`
-    width: 100%;
+  width: 100%;
+  height: 32%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
+
 InputWrapper.input = styled.div`
   width: 100%;
   height: 30px;
-  margin-top: 2%;
+`;
+
+InputWrapper.button = styled.div`
+  width: 100%;
+  height: 30px;
 `;
 
 export const ResponseStatus = styled.div`
@@ -37,10 +46,15 @@ export const ResponseStatus = styled.div`
   height: 25px;
 `;
 
-export const ButtonDiv = styled.div``;
+export const ButtonDiv = styled.div`
+  width: 100%;
+  height: 32%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 export const ButtonWrapper = styled.div`
   width: 35%;
-  padding-top: 1%;
 `;
 

@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   width: 50%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 export const WrapperContainer = styled.div`
-  width: 60%;
-  flex-wrap: wrap;
-  align-content: space-between;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const LabelDiv = styled.div`
@@ -18,42 +18,53 @@ export const LabelDiv = styled.div`
 `;
 
 export const Label = styled.label`
-    background-color: ${props => props.theme.pagebackcolor};
-    color: ${props => props.theme.textColor};
+  background-color: ${props => props.theme.pagebackcolor};
+  color: ${props => props.theme.textColor};
 `;
 
 export const InputWrapper = styled.div`
-    width: 100%;
+  width: 100%;
+  height: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
+
 InputWrapper.input = styled.div`
   width: 100%;
   height: 30px;
-  margin-top: 2%;
 `;
+
 InputWrapper.button = styled.div`
   width: 100%;
   height: 30px;
-  margin-top: 3%;
 `;
 
 export const ResponseStatus = styled.div`
-  background-color: grey;
-  width: 50px;
-  height: 25px;
-  border-radius: 8px;
+  background-color: green;
+  width: 10%;
+  height: 100%;
+  border-radius: 10px;
 `;
 
 export const ButtonDiv = styled.div`
+  width: 100%;
+  height: 48%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  justify-content: space-between;
 `;
-export const StatusWrapper = styled.div`
-  display: flex;
-`;
-
 
 export const ButtonWrapper = styled.div`
   width: 35%;
-  padding-top: 8px;
 `;
+
+export const StatusWrapper = styled.div`
+  width: 100%;
+  height: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 

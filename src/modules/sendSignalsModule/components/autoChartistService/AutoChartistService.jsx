@@ -50,14 +50,15 @@ const AutoChartistService = props => {
                         </InputWrapper.button>
                         )}
                 </ButtonDiv>
-                {/*<StatusWrapper>*/}
-                {/*    {statusLabel.map((name, id) =>*/}
-                {/*        <ResponseStatus key={id}*/}
-                {/*                        name={name}*/}
-                {/*        />*/}
-                {/*    )}*/}
-                {/*</StatusWrapper>открыть когда будут приходить статусы*/ }
             </ButtonWrapper>
+            {/*<StatusWrapper>*/}
+            {/*    <LabelDiv/>*/}
+            {/*    {statusLabel.map((name, id) =>*/}
+            {/*        <ResponseStatus key={id}*/}
+            {/*                        name={name}*/}
+            {/*        />*/}
+            {/*    )}*/}
+            {/*</StatusWrapper>*/}
         </Wrapper>
     );
 }

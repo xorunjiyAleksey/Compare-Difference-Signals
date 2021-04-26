@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import signals from '../../manager/reducer.js';
+import sdsSignals from '../../manager/sdsServiceManager/reducer';
 export default combineReducers({
-    signals
+    sdsSignals,
 });
