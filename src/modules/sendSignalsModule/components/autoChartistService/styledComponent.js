@@ -33,7 +33,7 @@ InputWrapper.input = styled.div`
 InputWrapper.button = styled.div`
   width: 100%;
   height: 30px;
-  margin-top: 2%;
+  margin-top: 3%;
 `;
 
 export const ResponseStatus = styled.div`
@@ -54,6 +54,6 @@ export const StatusWrapper = styled.div`
 
 export const ButtonWrapper = styled.div`
   width: 35%;
-  padding-top: 3%;
+  padding-top: 8px;
 `;
 
