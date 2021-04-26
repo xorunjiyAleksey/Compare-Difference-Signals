@@ -1,6 +1,6 @@
 import React from 'react';
 import Top from '../sendSignalsModule/SendSignalsModule.jsx';
-import Bottom from '../bottom/Bottom.jsx';
+import Bottom from '../signalsTable/SignalsTable.jsx';
 import {
     Wrapper,
     GlobalStyle,
