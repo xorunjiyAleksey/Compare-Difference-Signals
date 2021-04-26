@@ -41,5 +41,6 @@ export const ButtonDiv = styled.div``;
 
 export const ButtonWrapper = styled.div`
   width: 35%;
+  padding-top: 1%;
 `;
 
