@@ -1,5 +1,5 @@
 import React from 'react';
-import Top from '../sendSignalsModule/SendSignalsModule.jsx';
+import Top from '../signalsModule/SignalsModule.jsx';
 import Bottom from '../signalsTable/SignalsTable.jsx';
 import {
     Wrapper,

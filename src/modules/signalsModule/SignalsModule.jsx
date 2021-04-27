@@ -3,7 +3,7 @@ import { MainWrapper } from './styledComponent.js';
 import SdsService from './components/sdsService/SdsService.jsx';
 import AutoChartistService from './components/autoChartistService';
 
-const SendSignalsModule = () => {
+const SignalsModule = () => {
     return (
         <MainWrapper>
             <AutoChartistService/>
@@ -12,4 +12,4 @@ const SendSignalsModule = () => {
     );
 }
 
-export default React.memo(SendSignalsModule);
+export default React.memo(SignalsModule);
