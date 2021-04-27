@@ -12,6 +12,10 @@ const CustomInput = props => {
         <Input value={value}
                placeholder={placeholderName}
                onChange={handleChange}
+               name={Object.keys(placeholderName)}
+               onChange={handleChange}
+               placeholder={Object.values(placeholderName)}
+
         />
     );
 };

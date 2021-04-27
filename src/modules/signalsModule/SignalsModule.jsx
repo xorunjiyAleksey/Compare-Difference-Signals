@@ -1,6 +1,6 @@
 import React from 'react';
 import { MainWrapper } from './styledComponent.js';
-import SdsService from './components/sdsService/SdsService.jsx';
+import SdsService from './components/sdsService';
 import AutoChartistService from './components/autoChartistService';
 
 const SignalsModule = () => {

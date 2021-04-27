@@ -1,5 +1,6 @@
 import constants from '../../../../constants';
 
-export const onIsEnable = () => ({
-    type: constants.getSignalButtonIsEnable,
+export const onSendSignal = payload => ({
+    type: constants.SEND_PATTERN,
+    payload,
 })
