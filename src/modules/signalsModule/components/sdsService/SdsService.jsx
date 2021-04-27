@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Label,
     Wrapper,
@@ -11,10 +11,36 @@ import {
 } from './styledComponent';
 import Button from '../../../components/button/Button.jsx'
 import CustomInput from '../../../components/CustomInput/CustomInput.jsx';
+import { getSignalsByPattern } from "./logic";
 
-const SdsService = () => {
-    const mockPlaceholder = [{microservice: 'enter parth to microservice'}, {chartPatterns: 'enter chart patterns'}, {fibonacciPatterns:'enter fibonacci patterns'}, {keyLevelsPatterns: 'enter key levels patterns'}];
-    const statusButtons = [ 'get signals', 'get signals', 'get signals', 'get signals'];
+const SdsService = props => {
+    const {
+        sendSignal,
+    } = props
+
+    const statusButtons = [{label:' '}, 'get signals', 'get signals', 'get signals'];
+    const mockPlaceholder = [{parth: 'enter parth to microservice'}, {pattern: 'enter chart patterns'}, {pattern:'enter fibonacci patterns'}, {pattern: 'enter key levels patterns'}];
+    const statusLabel = ['100', '200', '300', '400', '500'];
+
+    const [inputStatus, setInputStatus] = useState({
+        parth: '',
+        pattern: ''
+    });
+
+    const handleChange = event => {
+        const { name, value } = event.target;
+        setInputStatus(preValue => ({
+            ...preValue,
+             [name]: value,
+        }))
+        console.log(inputStatus);
+    }
+
+    const handleClick = () => {
+        getSignalsByPattern(inputStatus)
+            .then(signals => sendSignal(signals));
+        console.log( sendSignal, 'signal');
+    }
 
     return (
         <Wrapper>
@@ -28,6 +54,7 @@ const SdsService = () => {
                             <CustomInput
                                 key={id}
                                 placeholderName={placeholderName}
+                                handleChange={handleChange}
                             />
                         </InputWrapper.input>
                     )}
@@ -37,9 +64,12 @@ const SdsService = () => {
                 <LabelDiv/>
                 <ButtonDiv>
                     {statusButtons.map((name, id) =>
-                        <InputWrapper.input>
-                            <Button key={id} name={name}/>
-                        </InputWrapper.input>
+                        <InputWrapper.button>
+                            <Button key={id}
+                                    name={name}
+                                    handleClick={handleClick}
+                            />
+                        </InputWrapper.button>
                     )}
                     {/*<ResponseStatus>*/}
                     {/*</ResponseStatus> открыть когда будут приходить статусы*/}

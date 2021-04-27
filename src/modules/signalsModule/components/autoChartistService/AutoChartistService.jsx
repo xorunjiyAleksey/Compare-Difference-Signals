@@ -23,7 +23,7 @@ const AutoChartistService = props => {
     console.log('sendSignal', sendSignal, 'btnStatus' ,btnStatus)
 
     const mockPlaceholder = [{ sid: '' }, { umid: '' }, {microservice: 'enter parth to microservice'}, {chartPatterns: 'enter chart patterns'}, {fibonacciPatterns:'enter fibonacci patterns'}, {keyLevelsPatterns: 'enter key levels patterns'}];
-    const signalsButtons = [{ label: 'sid' }, { label: 'umid' }, 'get signals', 'get signals', 'get signals', 'get signals'];
+    const signalsButtons = [{ label: 'sid' }, { label: 'umid' }, { label: ' ' }, 'get signals', 'get signals', 'get signals'];
     const statusLabel = ['100', '200', '300', '400', '500'];
 
     const [signalData, setSignalData] = useState({
@@ -31,6 +31,7 @@ const AutoChartistService = props => {
         sid: '',
         umid: '',
     });
+
     const handleChange =  event => {
         const { value } = event.target;
         setSignalData(value)
@@ -71,14 +72,15 @@ const AutoChartistService = props => {
                         </InputWrapper.button>
                         )}
                 </ButtonDiv>
-                {/*<StatusWrapper>*/}
-                {/*    {statusLabel.map((name, id) =>*/}
-                {/*        <ResponseStatus key={id}*/}
-                {/*                        name={name}*/}
-                {/*        />*/}
-                {/*    )}*/}
-                {/*</StatusWrapper>открыть когда будут приходить статусы*/ }
             </ButtonWrapper>
+            {/*<StatusWrapper>*/}
+            {/*    <LabelDiv/>*/}
+            {/*    {statusLabel.map((name, id) =>*/}
+            {/*        <ResponseStatus key={id}*/}
+            {/*                        name={name}*/}
+            {/*        />*/}
+            {/*    )}*/}
+            {/*</StatusWrapper>*/}
         </Wrapper>
     );
 }

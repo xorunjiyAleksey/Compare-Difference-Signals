@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
-import autochartistSignals from '../../manager/reducer.js';
+import sdsSignals from '../../manager/sdsServiceManager/reducer';
+import autoChartistService from '../../manager/reducer';
+
 export default combineReducers({
-    autochartistSignals
+    sdsSignals,
+    autoChartistService
 });
