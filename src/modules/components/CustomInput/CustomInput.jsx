@@ -8,16 +8,16 @@ const CustomInput = props => {
         placeholderName
     } = props;
 
-    return (
-        <Input value={value}
-               placeholder={placeholderName}
-               onChange={handleChange}
-               name={Object.keys(placeholderName)}
-               onChange={handleChange}
-               placeholder={Object.values(placeholderName)}
+    const inputName = Object.keys(placeholderName)[0];
+    const placeName = Object.values(placeholderName)[0];
+    const inputValue = placeholderName.link ? placeholderName.link : value;
 
+    return (
+        <Input name={inputName}
+               value={inputValue}
+               onChange={handleChange}
+               placeholder={placeName}
         />
     );
 };
-
 export default React.memo(CustomInput);

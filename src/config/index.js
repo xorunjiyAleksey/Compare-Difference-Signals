@@ -1,1 +1,0 @@
-export const url = 'https://dev-services.maximarkets.org/srvgtw/autochartist/v1/';
