@@ -4,12 +4,14 @@ import { Input } from './styledComponent.js';
 const CustomInput = props => {
     const {
         value,
+        handleChange,
         placeholderName
     } = props;
-
     return (
         <Input value={value}
-               placeholder={placeholderName}
+               name={Object.keys(placeholderName)}
+               onChange={handleChange}
+               placeholder={Object.values(placeholderName)}
         />
     );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Label,
     Wrapper,
@@ -12,15 +12,34 @@ import {
 } from './styledComponent';
 import Button from '../../../components/button/Button.jsx'
 import CustomInput from '../../../components/CustomInput/CustomInput.jsx';
+import { getSignalsByPattern } from "./logic";
 
 const AutoChartistService = props => {
     const {
-        isEnable
+        sendSignal,
+        btnStatus
     } = props;
-    console.log(isEnable)
-    const mockPlaceholder = ['', '', 'enter parth to microservice', 'enter chart patterns', 'enter fibonacci patterns', 'enter key levels patterns'];
+
+    console.log('sendSignal', sendSignal, 'btnStatus' ,btnStatus)
+
+    const mockPlaceholder = [{ sid: '' }, { umid: '' }, {microservice: 'enter parth to microservice'}, {chartPatterns: 'enter chart patterns'}, {fibonacciPatterns:'enter fibonacci patterns'}, {keyLevelsPatterns: 'enter key levels patterns'}];
     const signalsButtons = [{ label: 'sid' }, { label: 'umid' }, 'get signals', 'get signals', 'get signals', 'get signals'];
     const statusLabel = ['100', '200', '300', '400', '500'];
+
+    const [signalData, setSignalData] = useState({
+        pattern: '',
+        sid: '',
+        umid: '',
+    });
+    const handleChange =  event => {
+        const { value } = event.target;
+        setSignalData(value)
+    }
+
+    const handleClick = () => {
+        getSignalsByPattern(signalData)
+        .then(signals => sendSignal(signals));
+    }
 
     return (
         <Wrapper>
@@ -33,6 +52,7 @@ const AutoChartistService = props => {
                         <InputWrapper.input>
                             <CustomInput
                                 key={id}
+                                handleChange={handleChange}
                                 placeholderName={placeholderName}
                             />
                         </InputWrapper.input>
@@ -46,6 +66,7 @@ const AutoChartistService = props => {
                         <InputWrapper.button>
                             <Button key={id}
                                     name={name}
+                                    handleClick={handleClick}
                             />
                         </InputWrapper.button>
                         )}

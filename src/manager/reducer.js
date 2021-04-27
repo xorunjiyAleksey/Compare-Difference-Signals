@@ -1,15 +1,22 @@
 import constants from '../constants';
 
 const initialState = {
-    getSignalButtonIsEnable: true,
+    sendPattern: [],
+    isBtnEnable: false,
 }
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case constants.SEND_PATTERNS_ACTIVE:
+        case constants.IS_BUTTON_ENABLE:
             return {
                 ...state,
-                getSignalButtonIsEnable: false
+                isBtnEnable: true
+            }
+        case constants.SEND_PATTERN:
+            return {
+                ...state,
+                sendPattern: action.payload,
+                isBtnEnable: false
             }
         default:
             return state;
