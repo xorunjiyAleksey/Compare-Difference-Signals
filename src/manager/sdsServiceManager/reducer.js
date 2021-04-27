@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
         case constants.SEND_SDS_SERVICE:
             return {
                 ...state,
-                sendPattern: action.payload,
+                sendSdsService: action.payload,
                 isBtnEnable: false
             }
         default:

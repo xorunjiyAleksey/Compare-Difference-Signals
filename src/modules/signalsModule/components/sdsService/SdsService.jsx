@@ -18,14 +18,14 @@ const SdsService = props => {
         sendSignal,
     } = props
 
-    const statusButtons = [{label:' '}, 'get signals', 'get signals', 'get signals'];
-    const mockPlaceholder = [{parth: 'enter parth to microservice'}, {pattern: 'enter chart patterns'}, {pattern:'enter fibonacci patterns'}, {pattern: 'enter key levels patterns'}];
-    const statusLabel = ['100', '200', '300', '400', '500'];
-
     const [inputStatus, setInputStatus] = useState({
-        parth: '',
+        parth: 'https://dev-signals.umarkets.ai/autochartist/',
         pattern: ''
     });
+
+    const statusButtons = [{label:' '}, 'get signals', 'get signals', 'get signals'];
+    const mockPlaceholder = [{parth: 'enter parth to microservice', link: inputStatus.parth }, {pattern: 'enter chart patterns'}, {pattern:'enter fibonacci patterns'}, {pattern: 'enter key levels patterns'}];
+    const statusLabel = ['100', '200', '300', '400', '500'];
 
     const handleChange = event => {
         const { name, value } = event.target;
@@ -37,9 +37,8 @@ const SdsService = props => {
     }
 
     const handleClick = () => {
-        getSignalsByPattern(inputStatus)
-            .then(signals => sendSignal(signals));
-        console.log( sendSignal, 'signal');
+            getSignalsByPattern(inputStatus)
+                .then(signals => sendSignal(signals));
     }
 
     return (

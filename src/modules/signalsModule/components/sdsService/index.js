@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendSignal: payload => dispatch(actions.onSendSignal(payload)),
+    sendSignal: signalDate => dispatch(actions.onSendSignal(signalDate)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);
