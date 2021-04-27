@@ -4,8 +4,6 @@ import { sendRequest } from '../../../../utils/sendRequest';
 
 export const getSignalsByPattern = async signalData => {
     const {
-        sid,
-        umid,
         pattern
     } = signalData;
 
