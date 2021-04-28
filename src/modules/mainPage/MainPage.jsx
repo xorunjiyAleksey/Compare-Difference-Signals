@@ -1,6 +1,6 @@
 import React from 'react';
-import Top from '../signalsModule/SignalsModule.jsx';
-import Bottom from '../signalsTable/SignalsTable.jsx';
+import SignalsModule from '../signalsModule';
+import SignalsTable from '../signalsTable/SignalsTable.jsx';
 import {
     Wrapper,
     GlobalStyle,
@@ -13,10 +13,10 @@ const MainPage = () => {
         <ThemeProvider theme={themeTable}>
             <Wrapper data-at={'main-page_wrapper'}>
                 <Wrapper.Top data-at={'wrapper_top'}>
-                    <Top/>
+                    <SignalsModule/>
                 </Wrapper.Top>
                 <Wrapper.Bottom data-at={'wrapper_bottom'}>
-                    <Bottom/>
+                    <SignalsTable/>
                 </Wrapper.Bottom>
                 <GlobalStyle/>
             </Wrapper>

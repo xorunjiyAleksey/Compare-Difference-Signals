@@ -15,9 +15,9 @@ import { getSignalsByPattern } from "./logic";
 
 const SdsService = props => {
     const {
-        sendSignal,
+        sendSdsSignal,
+        getSdsSignals,
     } = props
-
     const [inputStatus, setInputStatus] = useState({
         parth: 'https://dev-signals.umarkets.ai/autochartist/',
         pattern: ''
@@ -33,12 +33,11 @@ const SdsService = props => {
             ...preValue,
              [name]: value,
         }))
-        console.log(inputStatus);
     }
 
     const handleClick = () => {
             getSignalsByPattern(inputStatus)
-                .then(signals => sendSignal(signals));
+                .then(signals => sendSdsSignal(signals));
     }
 
     return (
