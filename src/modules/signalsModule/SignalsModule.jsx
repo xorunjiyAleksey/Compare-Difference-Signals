@@ -1,13 +1,29 @@
 import React from 'react';
+import _ from 'lodash';
 import { MainWrapper } from './styledComponent.js';
-import SdsService from './components/sdsService';
-import AutoChartistService from './components/autoChartistService';
+import SdsService from './components/sdsService/SdsService.jsx';
+import AutoChartistService from './components/autoChartistService/AutoChartistService.jsx';
 
-const SignalsModule = () => {
+const SignalsModule = props => {
+    const {
+        btnStatus,
+        getSdsSignals,
+        getAutochartistSignals,
+        sendAutoSignal,
+        sendSdsSignal
+    } = props;
+    // const parsedSdsSignals = getSdsSignals.map(el => JSON.parse(el));
     return (
         <MainWrapper>
-            <AutoChartistService/>
-            <SdsService/>
+            <AutoChartistService
+                btnStatus={btnStatus}
+                sendAutoSignal={sendAutoSignal}
+                getAutochartistSignals={getAutochartistSignals}
+            />
+            <SdsService
+                getSdsSignals={getSdsSignals}
+                sendSdsSignal={sendSdsSignal}
+            />
         </MainWrapper>
     );
 }

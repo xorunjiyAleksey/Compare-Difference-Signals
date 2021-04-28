@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
         case constants.SEND_SDS_SERVICE:
             return {
                 ...state,
-                chart: action.payload,
+                [action.payload.pattern]: [...action.payload.signals],
                 isBtnEnable: false
             }
         default:

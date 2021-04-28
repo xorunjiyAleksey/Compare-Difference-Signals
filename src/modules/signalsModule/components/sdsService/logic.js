@@ -12,36 +12,36 @@ export const getSignalsByPattern = async inputStatus => {
     return await sendRequest(urlPattern, params);
 }
 
-export const watchPattern = (pattern, inputData, dispatchAction) => {
-    switch (pattern) {
-        case 'chart': {
-            getSignalsChartPattern(inputData, dispatchAction);
-            return;
-        }
-        case 'fibonacci': {
-            getSignalsFibonacciPattern(inputData, dispatchAction);
-            return;
-        }
-        case 'keyLevels': {
-            getSignalsKeyLevelsPattern(inputData, dispatchAction);
-            return;
-        }
-        default: return;
-    }
-}
-
-export const getSignalsChartPattern = async (inputData, dispatchAction) => {
-    const signals = await getSignalsByPattern(inputData);
-
-    dispatchAction({ type: 'set_signals_chart_pattern', payload: signals })
-}
-export const getSignalsFibonacciPattern = async (inputData, dispatchAction) => {
-    const signals = await getSignalsByPattern(inputData);
-
-    dispatchAction({ type: 'set_signals_fibonacci_pattern', payload: signals })
-}
-export const getSignalsKeyLevelsPattern = async (inputData, dispatchAction) => {
-    const signals = await getSignalsByPattern(inputData);
-
-    dispatchAction({ type: 'set_signals_keyLevels_pattern', payload: signals })
-}
+// export const watchPattern = (pattern, inputData, dispatchAction) => {
+//     switch (pattern) {
+//         case 'chart': {
+//             getSignalsChartPatterns(inputData, dispatchAction);
+//             return;
+//         }
+//         case 'fibonacci': {
+//             getSignalsFibonacciPatterns(inputData, dispatchAction);
+//             return;
+//         }
+//         case 'keyLevels': {
+//             getSignalsKeyLevelsPatterns(inputData, dispatchAction);
+//             return;
+//         }
+//         default: return;
+//     }
+// }
+//
+// export const getSignalsChartPatterns = async (inputData, dispatchAction) => {
+//     const signals = await getSignalsByPattern(inputData);
+//
+//     dispatchAction({ type: 'set_signals_chart_pattern', payload: signals })
+// }
+// export const getSignalsFibonacciPatterns = async (inputData, dispatchAction) => {
+//     const signals = await getSignalsByPattern(inputData);
+//
+//     dispatchAction({ type: 'set_signals_fibonacci_pattern', payload: signals })
+// }
+// export const getSignalsKeyLevelsPatterns = async (inputData, dispatchAction) => {
+//     const signals = await getSignalsByPattern(inputData);
+//
+//     dispatchAction({ type: 'set_signals_keyLevels_pattern', payload: signals })
+// }

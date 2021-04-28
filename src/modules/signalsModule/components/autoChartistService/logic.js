@@ -5,10 +5,12 @@ export const getSignalsByPattern = async signalData => {
     const {
         parth,
         pattern,
+        sid,
+        umid,
     } = signalData;
 
+    const params = getParams('GET', umid, sid);
     const urlPattern = `${parth}${pattern}`
-    const params = getParams('GET');
     return await sendRequest(urlPattern, params);
 }
 

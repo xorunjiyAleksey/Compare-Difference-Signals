@@ -13,6 +13,7 @@ import { themeTable } from '../../theme/theme.js';
 const SignalsTable = () => {
     const signalTitle = ["signals id", "name field", "autochartist", "sds"];
     const compareButtons = [{ buttonLabel: 'compare chart patterns', name: 'chart' }, { buttonLabel: 'compare fibonacci patterns', name: 'fibonacci' }, { buttonLabel: "compare key levels patterns", name: 'key levels' }, { buttonLabel: "compare all", name: 'key levels' }];
+
     return (
         <ThemeProvider theme={themeTable}>
             <Wrapper data-at={'Table-Container'}>
@@ -21,7 +22,14 @@ const SignalsTable = () => {
                         {signalTitle.map((title, index) => <Table key={index} title={title}/>)}
                     </TableWrapper>
                     <CompareButtonWrapper data-at={'TableModule__compareButtonWrapper'}> 
-                        {compareButtons.map((name, id) => <Button key={id} name={name}/>)}
+                        {compareButtons.map((button, id) =>
+                            <Button
+                                    key={id}
+                                    name={button.name}
+                                    // handleClick={() => handleClick(button.name)}
+                                    buttonLabel={button.buttonLabel}
+                            />
+                        )}
                     </CompareButtonWrapper>
                 </TableModule>
             </Wrapper>
