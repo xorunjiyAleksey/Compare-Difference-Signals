@@ -16,20 +16,19 @@ import { getSignalsByPattern } from "./logic";
 
 const AutoChartistService = props => {
     const {
-        sendSignal,
-        btnStatus
+        sendAutoSignal,
+        btnStatus,
+        getAutochartistSignals
     } = props;
-
-    console.log('sendSignal', sendSignal, 'btnStatus' ,btnStatus)
     const [signalData, setSignalData] = useState({
         pattern: '',
-        sid: '',
-        umid: '',
-        parth: 'https://dev-services.maximarkets.org/srvgtw/autochartist/'
+        sid: 'c5e3203fae0a44ad912d2b505a51275a',
+        umid: 'e4ca9a3c-d14d-41c8-8567-c22cb751fa0a',
+        parth: 'https://uat-services.maximarkets.org/srvgtw/autochartist/'
     });
 
     const mockPlaceholder = [{ sid: '' }, { umid: '' }, { parth: 'enter parth to microservice', link: signalData.parth }, { pattern: 'enter chart patterns' }, { pattern:'enter fibonacci patterns' }, { pattern: 'enter key levels patterns' }];
-    const signalsButtons = [{ label: 'sid' }, { label: 'umid' }, { label: ' ' }, 'get signals', 'get signals', 'get signals'];
+    const signalsButtons = [{ label: 'umid' }, { label: 'sid' }, { label: ' ' }, 'get signals', 'get signals', 'get signals'];
     const statusLabel = ['100', '200', '300', '400', '500'];
 
     const handleChange =  event => {
@@ -42,9 +41,9 @@ const AutoChartistService = props => {
 
     const handleClick = () => {
         getSignalsByPattern(signalData)
-        .then(signals => sendSignal(signals));
+        .then(signals => sendAutoSignal(signals));
     }
-    console.log(signalData)
+
     return (
         <Wrapper>
             <WrapperContainer>
