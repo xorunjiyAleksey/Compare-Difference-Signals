@@ -11,7 +11,7 @@ import {
     WrapperContainer,
 } from './styledComponent';
 import Button from '../../../components/button/Button.jsx'
-import CustomInput from '../../../components/CustomInput/CustomInput.jsx';
+import CustomInput from '../../../components/сustomInput/CustomInput.jsx';
 import { getSignalsByPattern } from "./logic";
 
 const AutoChartistService = props => {
@@ -29,7 +29,7 @@ const AutoChartistService = props => {
     });
 
     const mockPlaceholder = [{ sid: '' }, { umid: '' }, { parth: 'enter parth to microservice', link: signalData.parth }, { pattern: 'enter chart patterns' }, { pattern:'enter fibonacci patterns' }, { pattern: 'enter key levels patterns' }];
-    const signalsButtons = [{ label: 'sid' }, { label: 'umid' }, { label: ' ' }, 'get signals', 'get signals', 'get signals'];
+    const signalsButtons = [ { label: 'umid' }, { label: 'sid' }, { label:' '}, { buttonLabel: 'get signals', name: 'chart' }, { buttonLabel: 'get signals', name: 'fibonacci' }, { buttonLabel: 'get signals', name: 'key levels' }];
     const statusLabel = ['100', '200', '300', '400', '500'];
 
     const handleChange =  event => {

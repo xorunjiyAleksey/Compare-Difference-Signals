@@ -1,7 +1,9 @@
 import constants from '../../constants';
 
 const initialState = {
-    sendSdsService: [],
+    chart: [],
+    fibonacci:[],
+    keyLevels:[],
     isBtnEnable: false,
 }
 
@@ -15,7 +17,7 @@ export default (state = initialState, action) => {
         case constants.SEND_SDS_SERVICE:
             return {
                 ...state,
-                sendSdsService: action.payload,
+                chart: action.payload,
                 isBtnEnable: false
             }
         default:
