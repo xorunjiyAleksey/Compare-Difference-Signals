@@ -1,6 +1,8 @@
 import React from 'react';
 import Table from './components/table/Table.jsx';
 import Button from '../components/button/Button.jsx';
+import _ from 'lodash';
+
 import {
     Wrapper,
     TableModule,
@@ -70,9 +72,91 @@ const SignalsTable = props => {
 
     const handleClick = () => {
         const diffChartPattern = getAutochartistSignals.chart.filter(item => parsedChartSdsSignal.every(i => item.resultUid !== i.resultUid))
-        // const diffFibonacciPattern = getAutochartistSignals.fibonacci.filter(item => parsedFibonacciSdsSignal.every(i => item.resultUid !== i.resultUid));
-        // const diffKeyLevelsPattern = getAutochartistSignals.keyLevels.filter(item => parsedKeyLevelsSdsSignal.every(i => item.resultUid !== i.resultUid));
-        console.log({diffChartPattern})
+        const diffFibonacciPattern = getAutochartistSignals.fibonacci.filter(item => parsedFibonacciSdsSignal.every(i => item.resultUid !== i.resultUid));
+        const diffKeyLevelsPattern = getAutochartistSignals.keyLevels.filter(item => parsedKeyLevelsSdsSignal.every(i => item.resultUid !== i.resultUid));
+        console.log({diffChartPattern}, {diffFibonacciPattern}, {diffKeyLevelsPattern})
+
+        var result = _(getAutochartistSignals.chart)
+            .differenceBy(parsedChartSdsSignal,
+                'age',
+                'breakout',
+                'clarity',
+                'clickThroughUrl',
+                'completed',
+                'dataFeed',
+                'demoCandleDelay',
+                'demoMinuteDelay',
+                'direction',
+                'exchange',
+                'initialTrend',
+                'interval',
+                'length',
+                'pattern',
+                'patternEndTime',
+                'patternImageUrlpe',
+                'predictionPriceFrom',
+                'predictionPriceTo',
+                'predictionTimeFrom',
+                'predictionTimeTo',
+                'quality',
+                'relevant',
+                'resistanceX0',
+                'resistanceX1',
+                'resistanceY0',
+                'resistanceY1',
+                'resultUid',
+                'stopLoss',
+                'supportX0',
+                'supportX1',
+                'supportY0',
+                'supportY1',
+                'symbol',
+                'symbolCode',
+                'timezoneOffset',
+                'trend',
+                'uniformity',
+                'volumeIncrease',)
+            .map(_.partial(_.pick, _,
+                'age',
+                'breakout',
+                'clarity',
+                'clickThroughUrl',
+                'completed',
+                'dataFeed',
+                'demoCandleDelay',
+                'demoMinuteDelay',
+                'direction',
+                'exchange',
+                'initialTrend',
+                'interval',
+                'length',
+                'pattern',
+                'patternEndTime',
+                'patternImageUrlpe',
+                'predictionPriceFrom',
+                'predictionPriceTo',
+                'predictionTimeFrom',
+                'predictionTimeTo',
+                'quality',
+                'relevant',
+                'resistanceX0',
+                'resistanceX1',
+                'resistanceY0',
+                'resistanceY1',
+                'resultUid',
+                'stopLoss',
+                'supportX0',
+                'supportX1',
+                'supportY0',
+                'supportY1',
+                'symbol',
+                'symbolCode',
+                'timezoneOffset',
+                'trend',
+                'uniformity',
+                'volumeIncrease',))
+            .value();
+        console.log(result);
     }
 
 
