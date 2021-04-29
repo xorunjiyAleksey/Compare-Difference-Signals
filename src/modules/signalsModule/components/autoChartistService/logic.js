@@ -13,4 +13,3 @@ export const getSignalsByPattern = async signalData => {
     const urlPattern = `${parth}${pattern}`
     return await sendRequest(urlPattern, params);
 }
-

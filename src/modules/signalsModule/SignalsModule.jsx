@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { MainWrapper } from './styledComponent.js';
 import SdsService from './components/sdsService/SdsService.jsx';
 import AutoChartistService from './components/autoChartistService/AutoChartistService.jsx';

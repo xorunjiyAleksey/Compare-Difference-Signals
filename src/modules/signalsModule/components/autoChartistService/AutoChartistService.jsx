@@ -30,7 +30,7 @@ const AutoChartistService = props => {
     });
 
     const mockPlaceholder = [{ sid: '', name: 'sid' }, { umid: '', name: 'umid' }, { name: 'parth', text: 'enter parth to microservice', link: signalData.parth }, { name: 'chart', text: 'enter chart patterns', link: signalData.chart }, { name: 'fibonacci', text:'enter fibonacci patterns', link: signalData.fibonacci }, { name: 'keyLevels', text: 'enter key levels patterns', link: signalData.keyLevels }];
-    const signalsButtons = [ { label: 'sid', name: 'sid' }, { label: 'umid', name: 'umid' }, { label:' '}, { buttonLabel: 'get signals', name: 'chart' }, { buttonLabel: 'get signals', name: 'fibonacci' }, { buttonLabel: 'get signals', name: 'key levels' }];
+    const signalsButtons = [ { label: 'sid', name: 'sid' }, { label: 'umid', name: 'umid' }, { label:' '}, { buttonLabel: 'get signals', name: 'chart' }, { buttonLabel: 'get signals', name: 'fibonacci' }, { buttonLabel: 'get signals', name: 'keyLevels' }];
     const statusLabel = ['100', '200', '300', '400', '500'];
 
     const handleChange =  event => {
@@ -49,7 +49,10 @@ const AutoChartistService = props => {
             umid: signalData.umid
         };
         getSignalsByPattern(patternData)
-        .then(signals => sendAutoSignal(signals));
+            .then(signals => sendAutoSignal({
+                signals,
+                pattern,
+            }));
     }
     return (
         <Wrapper>
