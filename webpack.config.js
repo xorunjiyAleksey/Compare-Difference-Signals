@@ -88,5 +88,6 @@ module.exports = {
             chunkFilename: '[id].css',
         }),
         new CleanWebpackPlugin(),
-    ]
+    ],
+    devtool: '#source-map',
 }

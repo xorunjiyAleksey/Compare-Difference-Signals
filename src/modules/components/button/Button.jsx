@@ -7,19 +7,26 @@ import {
 const Button = props => {
     const {
         name,
+        label,
         handleClick,
+        buttonLabel,
     } = props;
 
     return (
-        name.label ?
-            <LabelContainer>
-                <LabelContainer.label>
-                    {name.label}
-                </LabelContainer.label>
-            </LabelContainer>
-        : <ButtonWrapper data-at={'compare-buttons__button-wrapper'} onClick={handleClick}>
-            <ButtonWrapper.text children={name}/>
-        </ButtonWrapper>
+        label
+            ?
+                <LabelContainer>
+                    <LabelContainer.label>
+                        {label}
+                    </LabelContainer.label>
+                </LabelContainer>
+            :
+                <ButtonWrapper data-at={'compare-buttons__button-wrapper'}
+                               name={name}
+                               onClick={handleClick}
+                >
+                    <ButtonWrapper.text children={buttonLabel}/>
+                </ButtonWrapper>
     );
 }
 

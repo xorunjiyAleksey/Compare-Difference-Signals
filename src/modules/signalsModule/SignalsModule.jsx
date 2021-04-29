@@ -12,22 +12,7 @@ const SignalsModule = props => {
         sendAutoSignal,
         sendSdsSignal
     } = props;
-    const parsedSdsSignals = getSdsSignals.map(el => JSON.parse(el));
-    console.log('parsedSdsSignals', parsedSdsSignals)
-    console.log('getAutochartistSignals', getAutochartistSignals)
-    // const parsedSdsSignals.map(el => el.id)
-    function isEqual(parsedSdsSignals, getAutochartistSignals) {
-        return parsedSdsSignals.map(function (one) {
-            return getAutochartistSignals.some(function (two) {
-                return two.val === one.val;
-            });
-        }).indexOf(false) > -1 ? false : true;
-    }
-
-
-    isEqual(parsedSdsSignals, getAutochartistSignals)
-
-
+    // const parsedSdsSignals = getSdsSignals.map(el => JSON.parse(el));
     return (
         <MainWrapper>
             <AutoChartistService
