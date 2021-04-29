@@ -13,15 +13,6 @@ const SignalsModule = props => {
         sendSdsSignal
     } = props;
 
-    const parsedSdsSignals = getSdsSignals.map(el => JSON.parse(el));
-
-    console.log('parsedSdsSignals', parsedSdsSignals);
-    console.log('getAutochartistSignals', getAutochartistSignals);
-
-
-    const diff = getAutochartistSignals.filter(item => parsedSdsSignals.every(i => item.resultUid !== i.resultUid));
-    console.log({ diff });
-
     return (
         <MainWrapper>
             <AutoChartistService

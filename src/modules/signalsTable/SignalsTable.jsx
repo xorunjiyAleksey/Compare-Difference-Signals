@@ -10,9 +10,71 @@ import {
 import { ThemeProvider } from 'styled-components';
 import { themeTable } from '../../theme/theme.js';
 
-const SignalsTable = () => {
+const SignalsTable = props => {
+    const {
+        getSdsSignals,
+        getAutochartistSignals,
+    } = props
+
+    const defaulKeys = [
+    'age',
+    'breakout',
+    'clarity',
+    'clickThroughUrl',
+    'completed',
+    'dataFeed',
+    'demoCandleDelay',
+    'demoMinuteDelay',
+    'direction',
+    'exchange',
+    'initialTrend',
+    'interval',
+    'length',
+    'pattern',
+    'patternEndTime',
+    'patternImageUrlpe',
+    'predictionPriceFrom',
+    'predictionPriceTo',
+    'predictionTimeFrom',
+    'predictionTimeTo',
+    'quality',
+    'relevant',
+    'resistanceX0',
+    'resistanceX1',
+    'resistanceY0',
+    'resistanceY1',
+    'resultUid',
+    'stopLoss',
+    'supportX0',
+    'supportX1',
+    'supportY0',
+    'supportY1',
+    'symbol',
+    'symbolCode',
+    'timezoneOffset',
+    'trend',
+    'uniformity',
+    'volumeIncrease',
+    ]
+
     const signalTitle = ["signals id", "name field", "autochartist", "sds"];
     const compareButtons = [{ buttonLabel: 'compare chart patterns', name: 'chart' }, { buttonLabel: 'compare fibonacci patterns', name: 'fibonacci' }, { buttonLabel: "compare key levels patterns", name: 'key levels' }, { buttonLabel: "compare all", name: 'key levels' }];
+
+    const parsedChartSdsSignal = getSdsSignals.chart.map(el => JSON.parse(el));
+    const parsedFibonacciSdsSignal = getSdsSignals.fibonacci.map(el => JSON.parse(el));
+    const parsedKeyLevelsSdsSignal = getSdsSignals.keyLevels.map(el => JSON.parse(el));
+
+    console.log({'parsedAutoChart': getAutochartistSignals.chart}, {'parsedAutoFibo': getAutochartistSignals.fibonacci}, {'parsedAutoKey': getAutochartistSignals.keyLevels})
+    console.log({'parsedSdsChart': parsedChartSdsSignal}, {'parsedFib': parsedFibonacciSdsSignal}, {'parsedKey':parsedKeyLevelsSdsSignal})
+
+
+    const handleClick = () => {
+        const diffChartPattern = getAutochartistSignals.chart.filter(item => parsedChartSdsSignal.every(i => item.resultUid !== i.resultUid))
+        // const diffFibonacciPattern = getAutochartistSignals.fibonacci.filter(item => parsedFibonacciSdsSignal.every(i => item.resultUid !== i.resultUid));
+        // const diffKeyLevelsPattern = getAutochartistSignals.keyLevels.filter(item => parsedKeyLevelsSdsSignal.every(i => item.resultUid !== i.resultUid));
+        console.log({diffChartPattern})
+    }
+
 
     return (
         <ThemeProvider theme={themeTable}>
@@ -26,7 +88,7 @@ const SignalsTable = () => {
                             <Button
                                     key={id}
                                     name={button.name}
-                                    // handleClick={() => handleClick(button.name)}
+                                    handleClick={() => handleClick(button.name)}
                                     buttonLabel={button.buttonLabel}
                             />
                         )}

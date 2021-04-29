@@ -21,9 +21,9 @@ const AutoChartistService = props => {
         getAutochartistSignals
     } = props;
     const [signalData, setSignalData] = useState({
-        umid: '',
-        sid: '',
-        parth: 'https://uat-services.umarkets.info/srvgtw/autochartist/',
+        umid: 'f635e133e4694372b4b52ddc9ed127fc',
+        sid: '21eff264-2dc1-446b-bc8b-26b3fe4303bf',
+        parth: 'https://dev-services.maximarkets.org/srvgtw/autochartist/',
         chart: 'v1/chartpatterns',
         fibonacci: 'v1/fibonaccipatterns',
         keyLevels: 'v1/keylevelspattern'
