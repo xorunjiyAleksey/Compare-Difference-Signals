@@ -1,7 +1,12 @@
 import constants from '../../constants';
 
 const initialState = {
-    sendSdsService: [],
+    sendPettern:
+        {
+            chart: [],
+            fibonacci:[],
+            keyLevels:[],
+        },
     isBtnEnable: false,
 }
 
@@ -13,9 +18,13 @@ export default (state = initialState, action) => {
                 isBtnEnable: true
             }
         case constants.SEND_SDS_SERVICE:
+
             return {
                 ...state,
-                sendSdsService: action.payload,
+                sendPettern: {
+                    ...state.sendPettern,
+                    [action.payload.pattern]: [...action.payload.signals],
+                },
                 isBtnEnable: false
             }
         default:

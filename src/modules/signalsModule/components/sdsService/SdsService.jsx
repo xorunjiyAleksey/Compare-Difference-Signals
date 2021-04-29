@@ -10,7 +10,7 @@ import {
     WrapperContainer,
 } from './styledComponent';
 import Button from '../../../components/button/Button.jsx'
-import CustomInput from '../../../components/CustomInput/CustomInput.jsx';
+import CustomInput from '../../../components/сustomInput/CustomInput.jsx';
 import { getSignalsByPattern } from "./logic";
 
 const SdsService = props => {
@@ -18,26 +18,65 @@ const SdsService = props => {
         sendSdsSignal,
         getSdsSignals,
     } = props
-    const [inputStatus, setInputStatus] = useState({
-        parth: 'https://dev-signals.umarkets.ai/autochartist/',
-        pattern: ''
-    });
 
-    const statusButtons = [{label:' '}, 'get signals', 'get signals', 'get signals'];
-    const mockPlaceholder = [{parth: 'enter parth to microservice', link: inputStatus.parth }, {pattern: 'enter chart patterns'}, {pattern:'enter fibonacci patterns'}, {pattern: 'enter key levels patterns'}];
+    const [inputStatus, setInputStatus] = useState(
+        {
+            parth: 'https://dev-signals.umarkets.ai/autochartist/',
+            chart: 'v1/chartpatterns',
+            fibonacci: 'v1/fibonaccipatterns',
+            keyLevels: 'v1/keylevelspattern',
+        }
+    );
+
+    const statusButtons = [
+        { label:' '},
+        { buttonLabel: 'get signals', name: 'chart' },
+        { buttonLabel: 'get signals', name: 'fibonacci' },
+        { buttonLabel: 'get signals', name: 'keyLevels' },
+    ];
+    const mockPlaceholder = [
+        {
+            name: 'parth',
+            text: 'enter parth to microservice',
+            link: inputStatus.parth
+        },
+        {
+            name: 'chart',
+            text: 'enter chart patterns',
+            link: inputStatus.chart
+        },
+        {
+            name: 'fibonacci',
+            text:'enter fibonacci patterns',
+            link: inputStatus.fibonacci
+        },
+        {
+            name: 'keyLevels',
+            text: 'enter key levels patterns',
+            link: inputStatus.keyLevels
+        }
+    ];
     const statusLabel = ['100', '200', '300', '400', '500'];
 
     const handleChange = event => {
         const { name, value } = event.target;
+
         setInputStatus(preValue => ({
             ...preValue,
              [name]: value,
         }))
     }
 
-    const handleClick = () => {
-            getSignalsByPattern(inputStatus)
-                .then(signals => sendSdsSignal(signals));
+    const handleClick = pattern => {
+        const patternData = {
+            parth: inputStatus.parth,
+            pattern: inputStatus[pattern],
+        };
+        getSignalsByPattern(patternData)
+            .then(signals => sendSdsSignal({
+                signals,
+                pattern,
+            }));
     }
 
     return (
@@ -47,11 +86,13 @@ const SdsService = props => {
                     <Label children={'Sds service'}></Label>
                 </LabelDiv>
                 <InputWrapper>
-                    {mockPlaceholder.map((placeholderName, id) =>
+                    {mockPlaceholder.map((input, id) =>
                         <InputWrapper.input>
                             <CustomInput
                                 key={id}
-                                placeholderName={placeholderName}
+                                link={input?.link}
+                                name={input.name}
+                                placeholder={input.text}
                                 handleChange={handleChange}
                             />
                         </InputWrapper.input>
@@ -61,11 +102,14 @@ const SdsService = props => {
             <ButtonWrapper>
                 <LabelDiv/>
                 <ButtonDiv>
-                    {statusButtons.map((name, id) =>
+                    {statusButtons.map((button, id) =>
                         <InputWrapper.button>
-                            <Button key={id}
-                                    name={name}
-                                    handleClick={handleClick}
+                            <Button
+                                key={id}
+                                name={button.name}
+                                label={button.label}
+                                handleClick={() => handleClick(button.name)}
+                                buttonLabel={button.buttonLabel}
                             />
                         </InputWrapper.button>
                     )}

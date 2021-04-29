@@ -1,7 +1,12 @@
 import constants from '../constants';
 
 const initialState = {
-    sendPattern: [],
+    sendPettern:
+        {
+            chart: [],
+            fibonacci:[],
+            keyLevels:[],
+        },
     isBtnEnable: false,
 }
 
@@ -15,7 +20,10 @@ export default (state = initialState, action) => {
         case constants.SEND_PATTERN:
             return {
                 ...state,
-                sendPattern: action.payload,
+                sendPettern: {
+                    ...state.sendPettern,
+                    [action.payload.pattern]: [...action.payload.signals],
+                },
                 isBtnEnable: false
             }
         default:

@@ -3,20 +3,20 @@ import { Input } from './styledComponent.js';
 
 const CustomInput = props => {
     const {
+        link,
+        name,
         value,
         handleChange,
-        placeholderName
+        placeholder
     } = props;
 
-    const inputName = Object.keys(placeholderName)[0];
-    const placeName = Object.values(placeholderName)[0];
-    const inputValue = placeholderName.link ? placeholderName.link : value;
+    const inputValue = link ? link : value;
 
     return (
-        <Input name={inputName}
+        <Input name={name}
                value={inputValue}
                onChange={handleChange}
-               placeholder={placeName}
+               placeholder={placeholder}
         />
     );
 };
