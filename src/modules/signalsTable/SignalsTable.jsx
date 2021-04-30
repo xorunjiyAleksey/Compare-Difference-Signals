@@ -56,30 +56,30 @@ const SignalsTable = props => {
             const sDsChart = sDsChartSignal.find(element => element.resultUid === id)
 
             if (autoChart && sDsChart) {
-                const diff = _.difference(autoChart, sDsChart);
+                const diffResult = difference(autoChart, sDsChart);
                 const differ = {
                     id: id,
-                    ...diff,
+                    ...diffResult,
                     autoChart,
                     sDsChart
                 }
                 result.push(differ)
+                supResult.push(diffResult)
             }
         })
 
-        function difference(object, base) {
-            function changes(object, base) {
-                return _.transform(object, function (result, value, key) {
-                    if (!_.isEqual(value, base[key])) {
-                        result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value
+        function difference(autoChart, sDsChart) {
+            function changes(autoChart, sDsChart) {
+                return _.transform(autoChart, function (result, value, key) {
+                    if (!_.isEqual(value, sDsChart[key])) {
+                        result[key] = (_.isObject(value) && _.isObject(sDsChart[key])) ? changes(value, sDsChart[key]) : value
                     }
-                })
+                });
             }
-
-            return changes(object, base);
+            return changes(autoChart, sDsChart);
         }
+        console.log(result, 'dif')
     }
-
 
     return (
         <ThemeProvider theme={themeTable}>
