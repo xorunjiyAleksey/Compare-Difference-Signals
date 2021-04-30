@@ -21,8 +21,8 @@ const AutoChartistService = props => {
         getAutochartistSignals
     } = props;
     const [signalData, setSignalData] = useState({
-        umid: 'f635e133e4694372b4b52ddc9ed127fc',
-        sid: 'f0e3b257-45b8-4814-883a-3f8235c21f91',
+        umid: 'd5d35560b2c2477785f927f10e121882',
+        sid: '2ccf33b7-4412-490f-b1c3-f04f1182c9c4',
         parth: 'https://uat-services.umarkets.info/srvgtw/autochartist/',
         chart: 'v1/chartpatterns',
         fibonacci: 'v1/fibonaccipatterns',

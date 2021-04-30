@@ -18,46 +18,45 @@ const SignalsTable = props => {
         getAutochartistSignals,
     } = props
 
-    const defaulKeys = [
-    'age',
-    'breakout',
-    'clarity',
-    'clickThroughUrl',
-    'completed',
-    'dataFeed',
-    'demoCandleDelay',
-    'demoMinuteDelay',
-    'direction',
-    'exchange',
-    'initialTrend',
-    'interval',
-    'length',
-    'pattern',
-    'patternEndTime',
-    'patternImageUrlpe',
-    'predictionPriceFrom',
-    'predictionPriceTo',
-    'predictionTimeFrom',
-    'predictionTimeTo',
-    'quality',
-    'relevant',
-    'resistanceX0',
-    'resistanceX1',
-    'resistanceY0',
-    'resistanceY1',
-    'resultUid',
-    'stopLoss',
-    'supportX0',
-    'supportX1',
-    'supportY0',
-    'supportY1',
-    'symbol',
-    'symbolCode',
-    'timezoneOffset',
-    'trend',
-    'uniformity',
-    'volumeIncrease',
-    ]
+    // const objKeys = [
+    //         'age',
+    //         'breakout',
+    //         'clarity',
+    //         'clickThroughUrl',
+    //         'completed',
+    //         'dataFeed',
+    //         'demoCandleDelay',
+    //         'demoMinuteDelay',
+    //         'direction',
+    //         'exchange',
+    //         'initialTrend',
+    //         'interval',
+    //         'length',
+    //         'pattern',
+    //         'patternEndTime',
+    //         'patternImageUrlpe',
+    //         'predictionPriceFrom',
+    //         'predictionPriceTo',
+    //         'predictionTimeFrom',
+    //         'predictionTimeTo',
+    //         'quality',
+    //         'relevant',
+    //         'resistanceX0',
+    //         'resistanceX1',
+    //         'resistanceY0',
+    //         'resistanceY1',
+    //         'resultUid',
+    //         'stopLoss',
+    //         'supportX0',
+    //         'supportX1',
+    //         'supportY0',
+    //         'supportY1',
+    //         'symbol',
+    //         'symbolCode',
+    //         'timezoneOffset',
+    //         'trend',
+    //         'uniformity',
+    //         'volumeIncrease'];
 
     const signalTitle = ["signals id", "name field", "autochartist", "sds"];
     const compareButtons = [{ buttonLabel: 'compare chart patterns', name: 'chart' }, { buttonLabel: 'compare fibonacci patterns', name: 'fibonacci' }, { buttonLabel: "compare key levels patterns", name: 'key levels' }, { buttonLabel: "compare all", name: 'key levels' }];
@@ -76,87 +75,40 @@ const SignalsTable = props => {
         const diffKeyLevelsPattern = getAutochartistSignals.keyLevels.filter(item => parsedKeyLevelsSdsSignal.every(i => item.resultUid !== i.resultUid));
         console.log({diffChartPattern}, {diffFibonacciPattern}, {diffKeyLevelsPattern})
 
-        var result = _(getAutochartistSignals.chart)
-            .differenceBy(parsedChartSdsSignal,
-                'age',
-                'breakout',
-                'clarity',
-                'clickThroughUrl',
-                'completed',
-                'dataFeed',
-                'demoCandleDelay',
-                'demoMinuteDelay',
-                'direction',
-                'exchange',
-                'initialTrend',
-                'interval',
-                'length',
-                'pattern',
-                'patternEndTime',
-                'patternImageUrlpe',
-                'predictionPriceFrom',
-                'predictionPriceTo',
-                'predictionTimeFrom',
-                'predictionTimeTo',
-                'quality',
-                'relevant',
-                'resistanceX0',
-                'resistanceX1',
-                'resistanceY0',
-                'resistanceY1',
-                'resultUid',
-                'stopLoss',
-                'supportX0',
-                'supportX1',
-                'supportY0',
-                'supportY1',
-                'symbol',
-                'symbolCode',
-                'timezoneOffset',
-                'trend',
-                'uniformity',
-                'volumeIncrease',)
-            .map(_.partial(_.pick, _,
-                'age',
-                'breakout',
-                'clarity',
-                'clickThroughUrl',
-                'completed',
-                'dataFeed',
-                'demoCandleDelay',
-                'demoMinuteDelay',
-                'direction',
-                'exchange',
-                'initialTrend',
-                'interval',
-                'length',
-                'pattern',
-                'patternEndTime',
-                'patternImageUrlpe',
-                'predictionPriceFrom',
-                'predictionPriceTo',
-                'predictionTimeFrom',
-                'predictionTimeTo',
-                'quality',
-                'relevant',
-                'resistanceX0',
-                'resistanceX1',
-                'resistanceY0',
-                'resistanceY1',
-                'resultUid',
-                'stopLoss',
-                'supportX0',
-                'supportX1',
-                'supportY0',
-                'supportY1',
-                'symbol',
-                'symbolCode',
-                'timezoneOffset',
-                'trend',
-                'uniformity',
-                'volumeIncrease',))
-            .value();
-        console.log(result);
+        let resultChartPattern = getAutochartistSignals.chart.filter(o1 => {
+            return !parsedChartSdsSignal.some(o2 => {
+                return o1.resultUid === o2.resultUid;
+            });
+        }).map(o => {
+            return Object.keys(o).reduce((newo, objKeys) => {
+                newo[objKeys] = o[objKeys];
+                return newo;
+            }, {});
+        });
+
+        let resultFibonacciPattern = getAutochartistSignals.fibonacci.filter(o1 => {
+            return !parsedFibonacciSdsSignal.some(o2 => {
+                return o1.resultUid === o2.resultUid;
+            });
+        }).map(o => {
+            return Object.keys(o).reduce((newo, objKeys) => {
+                newo[objKeys] = o[objKeys];
+                return newo;
+            }, {});
+        });
+
+        let resultKeyLevelsPattern = getAutochartistSignals.keyLevels.filter(o1 => {
+            return !parsedKeyLevelsSdsSignal.some(o2 => {
+                return o1.resultUid === o2.resultUid;
+            });
+        }).map(o => {
+            return Object.keys(o).reduce((newo, objKeys) => {
+                newo[objKeys] = o[objKeys];
+                return newo;
+            }, {});
+        });
+
+        console.log({resultChartPattern}, {resultFibonacciPattern}, {resultKeyLevelsPattern})
     }
 
 
