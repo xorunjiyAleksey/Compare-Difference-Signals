@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: ${props => props.theme.wrapperWidth};
-  height: ${props => props.theme.wrapperHeight};
+  width: 100%;
+  height: 100%;
   background-color: ${props => props.theme.pagebackcolor};
   display: flex;
 `;
@@ -25,7 +25,6 @@ export const CompareButtonWrapper = styled.div`
 
 export const TableWrapper = styled.div`
   width: 75%;
-  height: auto;
-  display: grid;
-  grid-template-columns: 3fr 3fr 3fr 3fr;
+  height: 100%;
+  display: flex;
 `;

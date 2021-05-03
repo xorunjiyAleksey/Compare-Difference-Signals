@@ -11,7 +11,7 @@ const SignalsModule = props => {
         sendAutoSignal,
         sendSdsSignal
     } = props;
-    // const parsedSdsSignals = getSdsSignals.map(el => JSON.parse(el));
+
     return (
         <MainWrapper>
             <AutoChartistService

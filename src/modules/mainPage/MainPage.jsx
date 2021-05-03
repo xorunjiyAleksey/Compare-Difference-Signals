@@ -1,6 +1,6 @@
 import React from 'react';
 import SignalsModule from '../signalsModule';
-import SignalsTable from '../signalsTable/SignalsTable.jsx';
+import SignalsTable from '../signalsTable';
 import {
     Wrapper,
     GlobalStyle,

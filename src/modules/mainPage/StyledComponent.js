@@ -17,10 +17,10 @@ export const Wrapper = styled.div`
 `;
 Wrapper.Top = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 50%;
 `;
 
 Wrapper.Bottom = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 50%;
 `;

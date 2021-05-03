@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const TableColumn = styled.div`
-  width: 100%;
+  width: 25%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -10,25 +10,13 @@ export const TableColumn = styled.div`
 `;
 TableColumn.title = styled.span`
   width: 90%;
-  height: auto;
+  height: 10%;
   font-size: 18px;
   text-align: center;
-  padding-top: 5px;
   color: ${props => props.theme.textColor}
 `;
 TableColumn.column = styled.div`
   width: 90%;
-  min-height: 300px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 80%;
   background-color: ${props => props.theme.textColor};
-`;
-
-export const TableColumnContent = styled.div`
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  background-color: ${props => props.theme.tableBackground};
 `;
