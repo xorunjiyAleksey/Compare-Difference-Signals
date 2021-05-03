@@ -17,7 +17,7 @@ TableColumn.title = styled.span`
   color: ${props => props.theme.textColor}
 `;
 TableColumn.column = styled.div`
-  width: 90%;
+  width: 150px;
   min-height: 300px;
   height: auto;
   display: flex;
@@ -27,8 +27,11 @@ TableColumn.column = styled.div`
 `;
 
 export const TableColumnContent = styled.div`
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: 50px;
+  word-break: break-word;
   text-align: center;
   background-color: ${props => props.theme.tableBackground};
+  cursor: pointer;
+  border: 0.5px solid black;
 `;
