@@ -161,7 +161,7 @@ const SignalsTable = props => {
         console.log(fibonacciPatternResult);
         console.log(keyLevelsPatternResult);
 
-        // setSignalContent(chartPatternResult.map(el => el.id));
+        setSignalContent(chartPatternResult.map(el => el.id));
     }
 
     const signalTitle = [{label: "signals id", value: signalContent}, {label: "name field", value: 'name'}, {label: "autochartist", value: 'nameauto'}, {label: "sds", value: 'namesds'}];
