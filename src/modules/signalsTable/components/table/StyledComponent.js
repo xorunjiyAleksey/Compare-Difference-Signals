@@ -10,7 +10,7 @@ export const TableColumn = styled.div`
 `;
 TableColumn.title = styled.span`
   width: 90%;
-  height: 10%;
+  height: auto;
   font-size: 18px;
   text-align: center;
   padding-top: 5px;
@@ -18,6 +18,17 @@ TableColumn.title = styled.span`
 `;
 TableColumn.column = styled.div`
   width: 90%;
-  height: 80%;
+  min-height: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: ${props => props.theme.textColor};
+`;
+
+export const TableColumnContent = styled.div`
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: ${props => props.theme.tableBackground};
 `;
