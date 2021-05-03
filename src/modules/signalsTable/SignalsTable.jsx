@@ -17,7 +17,12 @@ const SignalsTable = props => {
         getAutochartistSignals,
     } = props
 
-    const[signalContent, setSignalContent] = useState('')
+    const[signalContent, setSignalContent] = useState({
+        id: '',
+        sds: '',
+        pattern: '',
+        autoChart: '',
+    })
 
     const compareButtons = [{ buttonLabel: 'compare chart patterns', name: 'chart' }, { buttonLabel: 'compare fibonacci patterns', name: 'fibonacci' }, { buttonLabel: "compare key levels patterns", name: 'key levels' }, { buttonLabel: "compare all", name: 'key levels' }];
 
@@ -79,10 +84,10 @@ const SignalsTable = props => {
                     const differChart = {
                         id: id,
                         ...diffResultChartPattern,
-                        pattern: autoChart.pattern,
+                        pattern: 'Chart Pattern',
                         autoChart,
                         sDsChart,
-                        sdsDiff: sDsChart[diffResultChartPattern]
+                        // sdsDiff: sDsChart[diffResultChartPattern]
                     }
                     chartPatternResult.push(differChart)
                 }
@@ -99,6 +104,7 @@ const SignalsTable = props => {
                     const differFibonacci = {
                         id: id,
                         ...diffResultFibonacciPattern,
+                        pattern: 'Fibonacci Pattern',
                         autoFibonacci,
                         sDsFibonacci
                     }
@@ -117,6 +123,7 @@ const SignalsTable = props => {
                     const differKeyLevels = {
                         id: id,
                         ...diffResultKeyLevelsPattern,
+                        pattern: 'KeyLevel Pattern',
                         autoKeyLevels,
                         sDsKeyLevels
                     }
@@ -161,9 +168,13 @@ const SignalsTable = props => {
         console.log(fibonacciPatternResult);
         console.log(keyLevelsPatternResult);
 
-        setSignalContent(chartPatternResult.map(el => el.id));
+        setSignalContent(preValue => ({
+            ...preValue,
+            id: chartPatternResult.map(el => el.id),
+            pattern: chartPatternResult.map(el => el.pattern),
+        }))
     }
-
+    console.log(signalContent)
     const signalTitle = [{label: "signals id", value: signalContent}, {label: "name field", value: 'name'}, {label: "autochartist", value: 'nameauto'}, {label: "sds", value: 'namesds'}];
 
     return (
