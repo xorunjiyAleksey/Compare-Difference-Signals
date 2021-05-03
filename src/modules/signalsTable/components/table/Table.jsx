@@ -15,9 +15,7 @@ const Table = props => {
             <TableColumn data-at={'TableWrapper__TableColumn'}>
                 <TableColumn.title children={title}/>
                 <TableColumn.column>
-                    {signalContent.length &&
-                        signalContent.map(el => <TableColumnContent children={el}/>)
-                    }
+                    {Object.values(signalContent).map(el => <TableColumnContent children={el}/>)}
                 </TableColumn.column>
             </TableColumn>
     )

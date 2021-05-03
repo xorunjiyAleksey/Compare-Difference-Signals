@@ -19,7 +19,6 @@ const SignalsTable = props => {
 
     const[signalContent, setSignalContent] = useState('')
 
-    const signalTitle = ["signals id", "name field", "autochartist", "sds"];
     const compareButtons = [{ buttonLabel: 'compare chart patterns', name: 'chart' }, { buttonLabel: 'compare fibonacci patterns', name: 'fibonacci' }, { buttonLabel: "compare key levels patterns", name: 'key levels' }, { buttonLabel: "compare all", name: 'key levels' }];
 
     const parsedChartSdsSignal = getSdsSignals.chart.map(el => JSON.parse(el));
@@ -30,12 +29,12 @@ const SignalsTable = props => {
     console.log({'parsedSdsChart': parsedChartSdsSignal}, {'parsedFib': parsedFibonacciSdsSignal}, {'parsedKey':parsedKeyLevelsSdsSignal})
 
     
-    const readyForCompareAutoChartSignal = getAutochartistSignals.chart.map(el => {
+    const readyForCompareAutoChartSignal = getAutochartistSignals.chart.map(el => { //нужный массив авточарта
         delete el.dataFeed;
         delete el.clickThroughUrl;
         return el
     });
-    const readyForCompareSdsChartSignal = parsedChartSdsSignal.map(el => {
+    const readyForCompareSdsChartSignal = parsedChartSdsSignal.map(el => { //нужный массив sds chart
         delete el.brokerSymbolCode;
         return el
     });
@@ -70,17 +69,20 @@ const SignalsTable = props => {
         const keyLevelsPatternResult = [];
 
         diffAuthoChartIds.map(id => {
-            const autoChart = readyForCompareAutoChartSignal.find(element => element.resultUid === id)
-            const sDsChart = readyForCompareSdsChartSignal.find(element => element.resultUid === id)
+            const autoChart = readyForCompareAutoChartSignal.find(element => element.resultUid === id);
+            const sDsChart = readyForCompareSdsChartSignal.find(element => element.resultUid === id);
 
             if (autoChart && sDsChart) {
                 const diffResultChartPattern = differenceChart(autoChart, sDsChart);
-                if (diffResultChartPattern) {
+
+                if (Object.keys(diffResultChartPattern).length) {
                     const differChart = {
                         id: id,
                         ...diffResultChartPattern,
+                        pattern: autoChart.pattern,
                         autoChart,
-                        sDsChart
+                        sDsChart,
+                        sdsDiff: sDsChart[diffResultChartPattern]
                     }
                     chartPatternResult.push(differChart)
                 }
@@ -93,13 +95,15 @@ const SignalsTable = props => {
 
             if (autoFibonacci && sDsFibonacci) {
                 const diffResultFibonacciPattern = differenceFibonacci(autoFibonacci, sDsFibonacci);
-                const differFibonacci = {
-                    id: id,
-                    ...diffResultFibonacciPattern,
-                    autoFibonacci,
-                    sDsFibonacci
+                if (Object.keys(diffResultFibonacciPattern).length) {
+                    const differFibonacci = {
+                        id: id,
+                        ...diffResultFibonacciPattern,
+                        autoFibonacci,
+                        sDsFibonacci
+                    }
+                    fibonacciPatternResult.push(differFibonacci)
                 }
-                fibonacciPatternResult.push(differFibonacci)
             }
         })
 
@@ -109,13 +113,15 @@ const SignalsTable = props => {
 
             if (autoKeyLevels && sDsKeyLevels) {
                 const diffResultKeyLevelsPattern = differenceKeyLevels(autoKeyLevels, sDsKeyLevels);
-                const differKeyLevels = {
-                    id: id,
-                    ...diffResultKeyLevelsPattern,
-                    autoKeyLevels,
-                    sDsKeyLevels
+                if (Object.keys(diffResultKeyLevelsPattern).length) {
+                    const differKeyLevels = {
+                        id: id,
+                        ...diffResultKeyLevelsPattern,
+                        autoKeyLevels,
+                        sDsKeyLevels
+                    }
+                    keyLevelsPatternResult.push(differKeyLevels)
                 }
-                keyLevelsPatternResult.push(differKeyLevels)
             }
         })
 
@@ -155,8 +161,10 @@ const SignalsTable = props => {
         console.log(fibonacciPatternResult);
         console.log(keyLevelsPatternResult);
 
-        setSignalContent(chartPatternResult.map(el => el.id));
+        // setSignalContent(chartPatternResult.map(el => el.id));
     }
+
+    const signalTitle = [{label: "signals id", value: signalContent}, {label: "name field", value: 'name'}, {label: "autochartist", value: 'nameauto'}, {label: "sds", value: 'namesds'}];
 
     return (
         <ThemeProvider theme={themeTable}>
@@ -164,7 +172,7 @@ const SignalsTable = props => {
                 <TableModule data-at={'Table-Container__tableModule'}>
                     <TableWrapper data-at={'TableModule__tableWrapper'}>
                         {signalTitle.map((title, index) =>
-                            <Table key={index} title={title} signalContent={signalContent} signalTitle={signalTitle}/>)}
+                            <Table key={index} title={title.label} signalContent={title.value}/>)}
                     </TableWrapper>
                     <CompareButtonWrapper data-at={'TableModule__compareButtonWrapper'}> 
                         {compareButtons.map((button, id) =>
