@@ -143,7 +143,7 @@ const SignalsTable = props => {
                 }
             }) : null;
 
-            (isKeyLevels || isCompareAll) ?
+        (isKeyLevels || isCompareAll) ?
             diffAutoKeyLevelsIds.map(id => {
                 const autoKeyLevels = readyForCompareAutoKeyLevelsSignal.find(element => element.resultUid === id)
                 const sDsKeyLevels = readyForCompareSdsKeyLevelsSignal.find(element => element.resultUid === id)
@@ -195,15 +195,20 @@ const SignalsTable = props => {
             ...preValue,
             chartId: chartPatternResult.map(el => el.id),
             chartPattern: chartPatternResult.map(el => el.pattern),
+            fibonacciId: fibonacciPatternResult.map(el => el.id),
+            fibonacciPattern: fibonacciPatternResult.map(el => el.pattern),
+            keyLevelsId: keyLevelsPatternResult.map(el => el.id),
+            keyLevelsPattern: keyLevelsPatternResult.map(el => el.pattern),
         }))
     }
 
 
     const signalTitle = [
-        {label: "signals id", value: signalContent.chartId},
-        {label: "name field", value: signalContent.chartPattern},
-        {label: "autochartist", value: signalContent.diffChart},
-        {label: "sds", value: 'namesds'}];
+        {label: "signals id", value: {chartValue: signalContent.chartId, fibonacciValue: signalContent.fibonacciId, keyLevelsValue: signalContent.keyLevelsId}},
+        {label: "name field", value: {chartValue: signalContent.chartPattern, fibonacciValue: signalContent.fibonacciPattern, keyLevelsValue: signalContent.keyLevelsPattern}},
+        // {label: "autochartist", value: {chartValue: signalContent.diffChart, fibonacciValue: signalContent.diffChart, keyLevelsValue: signalContent.diffChart}},
+        // {label: "sds", value: {chartValue: 'differ', fibonacciValue: 'differ', keyLevelsValue: 'differ'}}
+    ];
 
     const showDiff = () => {
         console.log('sdas')

@@ -27,11 +27,17 @@ TableColumn.column = styled.div`
 `;
 
 export const TableColumnContent = styled.div`
-  width: auto;
-  height: 50px;
-  word-break: break-word;
+  width: 100px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   background-color: ${props => props.theme.tableBackground};
+`;
+
+TableColumnContent.content = styled.div`
+  width: auto;
+  height: auto;
   cursor: pointer;
   border: 0.5px solid black;
 `;
