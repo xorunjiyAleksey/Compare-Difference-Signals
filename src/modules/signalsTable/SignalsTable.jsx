@@ -19,8 +19,12 @@ const SignalsTable = props => {
 
     const [signalContent, setSignalContent] = useState({
         chartId: '',
-        sds: '',
         chartPattern: '',
+        fibonacciId: '',
+        fibonacciPattern: '',
+        keyLevelsId: '',
+        keyLevelsPattern: '',
+        sds: '',
         diffChart: '',
     })
 
@@ -139,7 +143,7 @@ const SignalsTable = props => {
                 }
             }) : null;
 
-            (isFibonacci || isCompareAll) ?
+            (isKeyLevels || isCompareAll) ?
             diffAutoKeyLevelsIds.map(id => {
                 const autoKeyLevels = readyForCompareAutoKeyLevelsSignal.find(element => element.resultUid === id)
                 const sDsKeyLevels = readyForCompareSdsKeyLevelsSignal.find(element => element.resultUid === id)
