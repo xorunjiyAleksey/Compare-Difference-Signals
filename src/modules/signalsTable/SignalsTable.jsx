@@ -18,9 +18,9 @@ const SignalsTable = props => {
     } = props
 
     const [signalContent, setSignalContent] = useState({
-        id: '',
+        chartId: '',
         sds: '',
-        pattern: '',
+        chartPattern: '',
         diffChart: '',
     })
 
@@ -189,16 +189,17 @@ const SignalsTable = props => {
 
         setSignalContent(preValue => ({
             ...preValue,
-            id: chartPatternResult.map(el => el.id),
-            pattern: chartPatternResult.map(el => el.pattern),
+            chartId: chartPatternResult.map(el => el.id),
+            chartPattern: chartPatternResult.map(el => el.pattern),
         }))
     }
 
 
-    const signalTitle = [{label: "signals id", value: signalContent.id}, {
-        label: "name field",
-        value: signalContent.pattern
-    }, {label: "autochartist", value: signalContent.diffChart}, {label: "sds", value: 'namesds'}];
+    const signalTitle = [
+        {label: "signals id", value: signalContent.chartId},
+        {label: "name field", value: signalContent.chartPattern},
+        {label: "autochartist", value: signalContent.diffChart},
+        {label: "sds", value: 'namesds'}];
 
     const showDiff = () => {
         console.log('sdas')
