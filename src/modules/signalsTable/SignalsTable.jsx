@@ -83,7 +83,8 @@ const SignalsTable = props => {
     const keyLevelsPatternResult = [];
 
 
-    const handleClick = (name) => {
+    const handleClick = (name, event) => {
+        event.preventDefault();
         const isChart = name === 'chart';
         const isFibonacci = name === 'fibonacii';
         const isKeyLevels = name === 'key levels';
@@ -227,7 +228,7 @@ const SignalsTable = props => {
                             <Button
                                 key={id}
                                 name={button.name}
-                                handleClick={() => handleClick(button.name)}
+                                handleClick={event => handleClick(button.name, event)}
                                 buttonLabel={button.buttonLabel}
                             />
                         )}
