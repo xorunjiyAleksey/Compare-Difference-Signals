@@ -11,25 +11,34 @@ const Table = props => {
         signalContent,
         signalContentId,
         signalContentKeys,
+        getDifferChartsId,
+        getDifferChartKeys
     } = props;
     console.log('keys', signalContentKeys)
     console.log('id', signalContentId)
-
+    console.log('diff', getDifferChartsId)
     const showDiff = () => {
 
     }
 
     return (
-            <TableColumn data-at={'TableWrapper__TableColumn'}>
-                <TableColumn.title children={title}/>
-                <TableColumn.column>
-                    {typeof signalContentId === 'object' && signalContentId.chartValue.length ? Object.values(signalContentId).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>) : null}
-                    {typeof signalContentKeys === 'object' && signalContentKeys.chartKeys.length ? Object.values(signalContentKeys).map(el => <TableColumnContent>{el.map((item)=>  Array.isArray(item) ? item.map((iKeys) => <TableColumnContent.content children={iKeys}/>) : <TableColumnContent.content children={item}/>)}</TableColumnContent>) : null}
-                    {/*{signalContentId.chartValuesignalContentId.chartValue.length ? Object.values(signalContentId).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>) : null}*/}
-                    {/*{signalContent.fibonacciValue.length ? Object.values(signalContent).map(el => <TableColumnContent children={el} onClick={showDiff}/>) : null}*/}
-                    {/*{signalContent.keyLevelsValue.length ? Object.values(signalContent).map(el => <TableColumnContent children={el} onClick={showDiff}/>) : null}*/}
-                </TableColumn.column>
-            </TableColumn>
+        <TableColumn data-at={'TableWrapper__TableColumn'}>
+            <TableColumn.title children={title}/>
+            <TableColumn.column>
+                {getDifferChartsId.length ? getDifferChartsId.map(el => <TableColumnContent><TableColumnContent.content children={el} onClik={showDiff}/></TableColumnContent>) : null}
+                {/*{typeof signalContentId === 'object' && signalContentId.chartValue.length*/}
+                {/*    ? Object.values(signalContentId).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>)*/}
+                {/*    : null}*/}
+                {/*{typeof signalContentKeys === 'object' && signalContentKeys.chartKeys.length*/}
+                {/*    ? Object.values(signalContentKeys).map(el => <TableColumnContent>{el.map((item)=>  Array.isArray(item)*/}
+                {/*        ? item.map((iKeys) => <TableColumnContent.content children={iKeys}/>)*/}
+                {/*        : <TableColumnContent.content children={item}/>)}</TableColumnContent>)*/}
+                {/*    : null}*/}
+                {/*{signalContentId.chartValuesignalContentId.chartValue.length ? Object.values(signalContentId).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>) : null}*/}
+                {/*{signalContent.fibonacciValue.length ? Object.values(signalContent).map(el => <TableColumnContent children={el} onClick={showDiff}/>) : null}*/}
+                {/*{signalContent.keyLevelsValue.length ? Object.values(signalContent).map(el => <TableColumnContent children={el} onClick={showDiff}/>) : null}*/}
+            </TableColumn.column>
+        </TableColumn>
     )
 }
 
