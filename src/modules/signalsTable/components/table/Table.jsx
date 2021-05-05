@@ -9,14 +9,23 @@ const Table = props => {
     const{
         title,
         signalContent,
-        showDiff,
+        signalContentId,
+        signalContentKeys,
     } = props;
-    console.log('sig', signalContent)
+    console.log('keys', signalContentKeys)
+    console.log('id', signalContentId)
+
+    const showDiff = () => {
+
+    }
+
     return (
             <TableColumn data-at={'TableWrapper__TableColumn'}>
                 <TableColumn.title children={title}/>
                 <TableColumn.column>
-                    {signalContent.chartValue.length ? Object.values(signalContent).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>) : null}
+                    {typeof signalContentId === 'object' && signalContentId.chartValue.length ? Object.values(signalContentId).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>) : null}
+                    {typeof signalContentKeys === 'object' && signalContentKeys.chartKeys.length ? Object.values(signalContentKeys).map(el => <TableColumnContent>{el.map((item)=>  Array.isArray(item) ? item.map((iKeys) => <TableColumnContent.content children={iKeys}/>) : <TableColumnContent.content children={item}/>)}</TableColumnContent>) : null}
+                    {/*{signalContentId.chartValuesignalContentId.chartValue.length ? Object.values(signalContentId).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>) : null}*/}
                     {/*{signalContent.fibonacciValue.length ? Object.values(signalContent).map(el => <TableColumnContent children={el} onClick={showDiff}/>) : null}*/}
                     {/*{signalContent.keyLevelsValue.length ? Object.values(signalContent).map(el => <TableColumnContent children={el} onClick={showDiff}/>) : null}*/}
                 </TableColumn.column>
