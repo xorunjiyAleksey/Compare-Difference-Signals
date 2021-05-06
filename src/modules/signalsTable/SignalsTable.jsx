@@ -20,10 +20,13 @@ const SignalsTable = props => {
     const [signalContent, setSignalContent] = useState({
         chartId: '',
         chartKeysDiffer: '',
+        chartValuesDiffer: '',
         fibonacciId: '',
         fibonacciKeysDiffer: '',
+        fibonacciValuesDiffer: '',
         keyLevelsId: '',
         keyLevelsKeysDiffer: '',
+        keyLevelsValuesDiffer: '',
         sdsResult: '',
     })
 
@@ -211,19 +214,22 @@ const SignalsTable = props => {
             ...preValue,
             chartId: chartPatternResult.map(el => el.id),
             chartKeysDiffer: chartPatternResult.map(el => el.differKeys),
+            chartValuesDiffer: chartPatternResult.map(el => el.differValues),
             fibonacciId: fibonacciPatternResult.map(el => el.id),
             fibonacciKeysDiffer: fibonacciPatternResult.map(el => el.differKeys),
+            fibonacciValuesDiffer: fibonacciPatternResult.map(el => el.differValues),
             keyLevelsId: keyLevelsPatternResult.map(el => el.id),
             keyLevelsKeysDiffer: keyLevelsPatternResult.map(el => el.differKeys),
-            sdsResult: chartPatternResult.map(el => el.sDsChart.resultUid),
+            keyLevelsValuesDiffer: keyLevelsPatternResult.map(el => el.differValues),
+            // sdsResult: chartPatternResult.map(el => Object.keys(el.sDsChart).find(item => item.)),
         }))
     }
-
+ 
 
     const signalTitle = [
         {label: "signals id", id: {chartValue: signalContent.chartId, fibonacciValue: signalContent.fibonacciId, keyLevelsValue: signalContent.keyLevelsId}},
         {label: "name field", keysField: {chartKeys: signalContent.chartKeysDiffer, fibonacciKeys: signalContent.fibonacciKeysDiffer, keyLevelsKeys: signalContent.keyLevelsKeysDiffer}},
-        // {label: "autochartist", value: {chartValue: signalContent.diffChart, fibonacciValue: signalContent.diffChart, keyLevelsValue: signalContent.diffChart}},
+        {label: "autochartist", valuesField: {chartValue: signalContent.chartValuesDiffer, fibonacciValue: signalContent.fibonacciValuesDiffer, keyLevelsValue: signalContent.keyLevelsValuesDiffer}},
         // {label: "sds", value: {chartValue: 'differ', fibonacciValue: 'differ', keyLevelsValue: 'differ'}}
     ];
 
@@ -233,7 +239,7 @@ const SignalsTable = props => {
                 <TableModule data-at={'Table-Container__tableModule'}>
                     <TableWrapper data-at={'TableModule__tableWrapper'}>
                         {signalTitle.map((title, index) =>
-                            <Table key={index} title={title.label} signalContentId={title.id} signalContentKeys={title.keysField} signalContent={signalContent}/>)}
+                            <Table key={index} title={title.label} signalContentId={title.id} signalContentKeys={title.keysField} signalContentValues={title.valuesField} signalContent={signalContent}/>)}
                     </TableWrapper>
                     <CompareButtonWrapper data-at={'TableModule__compareButtonWrapper'}>
                         {compareButtons.map((button, id) =>
