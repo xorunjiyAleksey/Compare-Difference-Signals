@@ -17,6 +17,8 @@ const SignalsTable = props => {
     const {
         getSdsSignals,
         getDifferCharts,
+        getDifferFibonacci,
+        getDifferKeyLevels,
         sendDiffersSignal,
         getAutochartistSignals,
     } = props
@@ -275,7 +277,7 @@ const SignalsTable = props => {
             return;
         }
 
-        sendDiffersSignal(chartPatternResultObj);
+        sendDiffersSignal(chartPatternResultObj, fibonacciPatternResultObj, keyLevelPatternResultObj);
 
         sendSignalsByPattern(chartPatternResult, fibonacciPatternResult, keyLevelsPatternResult)
             .then(()=> {
@@ -283,11 +285,11 @@ const SignalsTable = props => {
             });
     }
     const signalsId = Object.keys(getDifferCharts).map(element => element)
-    // const differencePattern = Object.keys(getDifferCharts).map(element => Object.keys(element.microservice));
+    const differencePattern = Object.values(getDifferCharts).map(element => Object.keys(element.microservice));
 
     const signalTitle = [
         {label: "signals id", id:  signalsId},
-        // {label: "name field", chartKeys:  differencePattern},
+        {label: "name field", chartKeys:  differencePattern},
         // {label: "signals id", id: {chartValue: signalContent.chartId, fibonacciValue: signalContent.fibonacciId, keyLevelsValue: signalContent.keyLevelsId}},
         // {label: "name field", keysField: {chartKeys: signalContent.chartKeysDiffer, fibonacciKeys: signalContent.fibonacciKeysDiffer, keyLevelsKeys: signalContent.keyLevelsKeysDiffer}},
         // {label: "autochartist", value: {chartValue: signalContent.diffChart, fibonacciValue: signalContent.diffChart, keyLevelsValue: signalContent.diffChart}},
@@ -303,8 +305,7 @@ const SignalsTable = props => {
                             <Table key={index} title={title.label}
                                    // signalContentId={title.id} signalContentKeys={title.keysField} signalContent={signalContent}
                                    getDifferChartsId={title.id}
-                                   // getDifferChartKeys={title.chartKeys}
-
+                                   getDifferChartKeys={title.chartKeys}
                             />)}
                     </TableWrapper>
                     <CompareButtonWrapper data-at={'TableModule__compareButtonWrapper'}>

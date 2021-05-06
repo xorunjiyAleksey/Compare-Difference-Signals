@@ -17,27 +17,24 @@ TableColumn.title = styled.span`
   color: ${props => props.theme.textColor}
 `;
 TableColumn.column = styled.div`
-  width: 150px;
+  width: 250px;
   min-height: 300px;
   height: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: ${props => props.theme.textColor};
 `;
 
 export const TableColumnContent = styled.div`
-  width: 100px;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
-  text-align: center;
-  background-color: ${props => props.theme.tableBackground};
 `;
 
 TableColumnContent.content = styled.div`
   width: auto;
   height: auto;
   cursor: pointer;
-  border: 0.5px solid black;
+  background-color: ${props => props.theme.tableBackground};
 `;

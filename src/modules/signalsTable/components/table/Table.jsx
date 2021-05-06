@@ -14,19 +14,16 @@ const Table = props => {
         getDifferChartsId,
         getDifferChartKeys
     } = props;
-    console.log('keys', signalContentKeys)
-    console.log('id', signalContentId)
-    console.log('diff', getDifferChartsId)
-    const showDiff = () => {
 
+    const showDiff = () => {
     }
 
     return (
         <TableColumn data-at={'TableWrapper__TableColumn'}>
             <TableColumn.title children={title}/>
             <TableColumn.column>
-                {getDifferChartsId.length ? getDifferChartsId.map(el => <TableColumnContent><TableColumnContent.content children={el} onClik={showDiff}/></TableColumnContent>) : null}
-                {/*{typeof signalContentId === 'object' && signalContentId.chartValue.length*/}
+                {Array.isArray(getDifferChartsId) && getDifferChartsId.length ? getDifferChartsId.map(el => <TableColumnContent><TableColumnContent.content children={el} onClick={showDiff}/></TableColumnContent>) : null}
+                {Array.isArray(getDifferChartKeys) && getDifferChartKeys.length ? getDifferChartKeys.map(el => <TableColumnContent><TableColumnContent.content children={el} onClick={showDiff}/></TableColumnContent>) : null}
                 {/*    ? Object.values(signalContentId).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>)*/}
                 {/*    : null}*/}
                 {/*{typeof signalContentKeys === 'object' && signalContentKeys.chartKeys.length*/}

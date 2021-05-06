@@ -13,6 +13,8 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 chartDiffers: {...action.payload},
+                fibonacciDiffers: {...action.payload},
+                keyLevelsDiffers: {...action.payload},
             }
         default:
             return state;
