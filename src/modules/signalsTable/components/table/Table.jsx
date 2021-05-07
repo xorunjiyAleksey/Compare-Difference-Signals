@@ -1,39 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     TableColumn,
     TableColumnContent
 
 } from './StyledComponent.js';
+import {element, object} from "prop-types";
 
 const Table = props => {
     const{
         title,
+        showDiff,
         signalContent,
         signalContentId,
         signalContentKeys,
         getDifferChartsId,
-        getDifferChartKeys
+        getDifferChartKeys,
+        getDifferCharts,
+        differenceArray,
+        differenceSdsValue,
+        differenceMicroserviceValue,
+        differenceSdsValueFibonacci,
+        differenceMicroserviceValueFibonacci,
+        differenceKeyFibonacci,
+        signalsFibonacciId,
+        signalsKeyLevelsId,
+        differenceKeyKeyLevels,
+        differenceMicroserviceValueKeyLevels,
+        differenceSdsValueKeyLevels,
     } = props;
 
-    const showDiff = () => {
-    }
 
     return (
         <TableColumn data-at={'TableWrapper__TableColumn'}>
             <TableColumn.title children={title}/>
             <TableColumn.column>
-                {Array.isArray(getDifferChartsId) && getDifferChartsId.length ? getDifferChartsId.map(el => <TableColumnContent><TableColumnContent.content children={el} onClick={showDiff}/></TableColumnContent>) : null}
-                {Array.isArray(getDifferChartKeys) && getDifferChartKeys.length ? getDifferChartKeys.map(el => <TableColumnContent><TableColumnContent.content children={el} onClick={showDiff}/></TableColumnContent>) : null}
-                {/*    ? Object.values(signalContentId).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>)*/}
-                {/*    : null}*/}
-                {/*{typeof signalContentKeys === 'object' && signalContentKeys.chartKeys.length*/}
-                {/*    ? Object.values(signalContentKeys).map(el => <TableColumnContent>{el.map((item)=>  Array.isArray(item)*/}
-                {/*        ? item.map((iKeys) => <TableColumnContent.content children={iKeys}/>)*/}
-                {/*        : <TableColumnContent.content children={item}/>)}</TableColumnContent>)*/}
-                {/*    : null}*/}
-                {/*{signalContentId.chartValuesignalContentId.chartValue.length ? Object.values(signalContentId).map(el => <TableColumnContent onClick={showDiff}>{el.map((item)=> <TableColumnContent.content children={item}/>)}</TableColumnContent>) : null}*/}
-                {/*{signalContent.fibonacciValue.length ? Object.values(signalContent).map(el => <TableColumnContent children={el} onClick={showDiff}/>) : null}*/}
-                {/*{signalContent.keyLevelsValue.length ? Object.values(signalContent).map(el => <TableColumnContent children={el} onClick={showDiff}/>) : null}*/}
+                {Array.isArray(getDifferChartsId) && getDifferChartsId.length ? getDifferChartsId.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} onClick={showDiff}/></TableColumnContent>) : null}
+                {Array.isArray(differenceArray) && differenceArray.length ? differenceArray.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
+                {Array.isArray(differenceSdsValue) && differenceSdsValue.length ? differenceSdsValue.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
+                {Array.isArray(differenceMicroserviceValue) && differenceMicroserviceValue.length ? differenceMicroserviceValue.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el}/></TableColumnContent>) : null}
+
+                {Array.isArray(signalsKeyLevelsId) && signalsKeyLevelsId.length ? signalsKeyLevelsId.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} onClick={showDiff}/></TableColumnContent>) : null}
+                {Array.isArray(differenceKeyKeyLevels) && differenceKeyKeyLevels.length ? differenceKeyKeyLevels.map(el => <TableColumnContent><TableColumnContent.content children={el} /></TableColumnContent>) : null}
+                {Array.isArray(differenceMicroserviceValueKeyLevels) && differenceMicroserviceValueKeyLevels.length ? differenceMicroserviceValueKeyLevels.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
+                {Array.isArray(differenceSdsValueKeyLevels) && differenceSdsValueKeyLevels.length ? differenceSdsValueKeyLevels.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
+
+                {Array.isArray(signalsFibonacciId) && signalsFibonacciId.length ? signalsFibonacciId.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} onClick={showDiff}/></TableColumnContent>) : null}
+                {Array.isArray(differenceKeyFibonacci) && differenceKeyFibonacci.length ? differenceKeyFibonacci.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
+                {Array.isArray(differenceSdsValueFibonacci) && differenceSdsValueFibonacci.length ? differenceSdsValueFibonacci.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
+                {Array.isArray(differenceMicroserviceValueFibonacci) && differenceMicroserviceValueFibonacci.length ? differenceMicroserviceValueFibonacci.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
             </TableColumn.column>
         </TableColumn>
     )
