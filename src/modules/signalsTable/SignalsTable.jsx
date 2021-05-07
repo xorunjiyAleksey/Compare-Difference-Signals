@@ -291,8 +291,6 @@ const SignalsTable = props => {
         (isCompareAll || isFibonacci) && sendDiffersSignalFibonacci(fibonacciPatternResultObj);
         (isCompareAll || isKeyLevels) && sendDiffersSignalKeyLevels(keyLevelPatternResultObj);
 
-
-
         sendSignalsByPattern(chartPatternResult, fibonacciPatternResult, keyLevelsPatternResult)
             .then(()=> {
                 console.log('successful');
@@ -304,17 +302,29 @@ const SignalsTable = props => {
     console.log('dsadsadsasadsad', getDifferFibonacci)
 
     const showDiff = event => {
-        const differenceKey = Object.keys(getDifferCharts).length && Object.keys(getDifferCharts?.[event.target.innerText]?.microservice);
-        const differenceSdsValue = Object.keys(getDifferCharts).length && Object.values(getDifferCharts?.[event.target.innerText]?.sds);
-        const differenceMicroserviceValue = Object.keys(getDifferCharts).length && Object.values(getDifferCharts?.[event.target.innerText]?.microservice);
+        let differenceKey;
+        let differenceSdsValue;
+        let differenceMicroserviceValue;
+        let differenceKeyFibonacci;
+        let differenceSdsValueFibonacci;
+        let differenceMicroserviceValueFibonacci;
+        let differenceKeyKeyLevels;
+        let differenceSdsValueKeyLevels;
+        let differenceMicroserviceValueKeyLevels;
 
-        const differenceKeyFibonacci = Object.keys(getDifferFibonacci).length && Object.keys(getDifferFibonacci?.[event.target.innerText]?.microservice);
-        const differenceSdsValueFibonacci = Object.keys(getDifferFibonacci).length && Object.values(getDifferFibonacci?.[event.target.innerText]?.sds);
-        const differenceMicroserviceValueFibonacci = Object.keys(getDifferFibonacci).length && Object.values(getDifferFibonacci?.[event.target.innerText]?.microservice);
-
-        const differenceKeyKeyLevels = Object.keys(getDifferKeyLevels).length && Object.keys(getDifferKeyLevels?.[event.target.innerText]?.microservice);
-        const differenceSdsValueKeyLevels = Object.keys(getDifferKeyLevels).length && Object.values(getDifferKeyLevels?.[event.target.innerText]?.sds);
-        const differenceMicroserviceValueKeyLevels = Object.keys(getDifferKeyLevels).length && Object.values(getDifferKeyLevels?.[event.target.innerText]?.microservice);
+        if(signalsChartId.length) {
+             differenceKey = Object.keys(getDifferCharts).length && Object.keys(getDifferCharts?.[event.target.innerText]?.microservice);
+             differenceSdsValue = Object.keys(getDifferCharts).length && Object.values(getDifferCharts?.[event.target.innerText]?.sds);
+             differenceMicroserviceValue = Object.keys(getDifferCharts).length && Object.values(getDifferCharts?.[event.target.innerText]?.microservice);
+        } else if(signalsFibonacciId.length) {
+             differenceKeyFibonacci = Object.keys(getDifferFibonacci).length && Object.keys(getDifferFibonacci?.[event.target.innerText]?.microservice);
+             differenceSdsValueFibonacci = Object.keys(getDifferFibonacci).length && Object.values(getDifferFibonacci?.[event.target.innerText]?.sds);
+             differenceMicroserviceValueFibonacci = Object.keys(getDifferFibonacci).length && Object.values(getDifferFibonacci?.[event.target.innerText]?.microservice);
+        }else if(signalsKeyLevelsId.length) {
+             differenceKeyKeyLevels = Object.keys(getDifferKeyLevels).length && Object.keys(getDifferKeyLevels?.[event.target.innerText]?.microservice);
+             differenceSdsValueKeyLevels = Object.keys(getDifferKeyLevels).length && Object.values(getDifferKeyLevels?.[event.target.innerText]?.sds);
+             differenceMicroserviceValueKeyLevels = Object.keys(getDifferKeyLevels).length && Object.values(getDifferKeyLevels?.[event.target.innerText]?.microservice);
+        }
         setSignalContent(prevState => ({
             ...prevState,
             differenceKey,
@@ -373,12 +383,14 @@ const SignalsTable = props => {
                     </TableWrapper>
                     <CompareButtonWrapper data-at={'TableModule__compareButtonWrapper'}>
                         {compareButtons.map((button, id) =>
-                            <Button
-                                key={id}
-                                name={button.name}
-                                handleClick={event => handleClick(button.name, event)}
-                                buttonLabel={button.buttonLabel}
-                            />
+                            <CompareButtonWrapper.button>
+                                <Button
+                                    key={id}
+                                    name={button.name}
+                                    handleClick={event => handleClick(button.name, event)}
+                                    buttonLabel={button.buttonLabel}
+                                />
+                            </CompareButtonWrapper.button>
                         )}
                     </CompareButtonWrapper>
                 </TableModule>

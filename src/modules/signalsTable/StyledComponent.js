@@ -23,9 +23,20 @@ export const CompareButtonWrapper = styled.div`
   justify-content: space-between;
 `;
 
+CompareButtonWrapper.button = styled.div`
+  height: 35px;
+  margin-bottom: 10px;
+  background-color: ${props => props.theme.buttonColor};
+  
+  :hover{
+    background-color: ${props => props.theme.pagebackcolor}
+  }
+`;
+
 export const TableWrapper = styled.div`
   width: 75%;
   height: auto;
+  min-height: 350px;
   display: grid;
-  grid-template-columns: 3fr 3fr 3fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 `;

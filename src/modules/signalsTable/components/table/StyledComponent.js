@@ -11,13 +11,13 @@ export const TableColumn = styled.div`
 TableColumn.title = styled.span`
   width: 90%;
   height: auto;
-  font-size: 18px;
+  font-size: 21px;
   text-align: center;
-  padding-top: 5px;
+  padding: 7px;
   color: ${props => props.theme.textColor}
 `;
 TableColumn.column = styled.div`
-  width: 50%;
+  width: 70%;
   height: 300px;
   overflow-y: auto;
   display: flex;

@@ -4,17 +4,27 @@ export const ButtonWrapper = styled.button`
   width: 100%;
   height: 100%;
   outline: none;
-  background-color: ${props => props.theme.buttonColor};
+  background-color: ${props => props.theme.getSignalsBtnColor};
 
   :hover {
-    background-color: ${props => props.theme.buttonHoverColor};
+    background-color: ${props => props.theme.pagebackcolor};
     cursor: pointer;
+    border: 6px;
+    border-color: #3B5FB9;
   }
 `;
 ButtonWrapper.text = styled.span`
+  width: 100%;
+  height: 100%;
   color: ${props => props.theme.textColor};
+  display: block;
   text-align: center;
   font-size: 18px;
+  
+  :hover {
+    border: 4px solid ${props => props.theme.getSignalsBtnColor};
+    color: ${props => props.theme.getSignalsBtnColor};
+  }
 `;
 
 export const LabelContainer = styled.div`
@@ -27,6 +37,6 @@ export const LabelContainer = styled.div`
 LabelContainer.label = styled.span`
   color: ${props => props.theme.textColor};
   text-align: center;
-  font-size: 18px;
+  font-size: 21px;
   padding: 5px;
 `;
