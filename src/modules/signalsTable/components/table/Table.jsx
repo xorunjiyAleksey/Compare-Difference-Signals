@@ -48,7 +48,6 @@ const Table = props => {
                 {Array.isArray(differenceKeyFibonacci) && differenceKeyFibonacci.length ? differenceKeyFibonacci.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
                 {Array.isArray(differenceSdsValueFibonacci) && differenceSdsValueFibonacci.length ? differenceSdsValueFibonacci.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
                 {Array.isArray(differenceMicroserviceValueFibonacci) && differenceMicroserviceValueFibonacci.length ? differenceMicroserviceValueFibonacci.map(el => <TableColumnContent><TableColumnContent.content children={el} key={el} /></TableColumnContent>) : null}
-
             </TableColumn.column>
         </TableColumn>
     )

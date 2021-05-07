@@ -17,9 +17,9 @@ TableColumn.title = styled.span`
   color: ${props => props.theme.textColor}
 `;
 TableColumn.column = styled.div`
-  width: 250px;
-  min-height: 300px;
-  height: auto;
+  width: 50%;
+  height: 300px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   background-color: ${props => props.theme.textColor};
@@ -30,6 +30,8 @@ export const TableColumnContent = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  border: 0.5px solid black;
 `;
 
 TableColumnContent.content = styled.div`
