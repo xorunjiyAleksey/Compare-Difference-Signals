@@ -4,7 +4,8 @@ import { TableColumnContent } from './StyledComponent';
 const TableSignals = props => {
     const {
         signals,
-        showDiff
+        showDiff,
+        signalName,
     } = props;
 
     const {
