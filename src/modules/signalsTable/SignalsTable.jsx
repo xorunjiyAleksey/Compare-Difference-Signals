@@ -19,9 +19,9 @@ const SignalsTable = props => {
         getDifferFibonacci,
         getDifferKeyLevels,
         sendDiffersSignalChart,
-        sendDiffersSignalFibonacci,
-        sendDiffersSignalKeyLevels,
         getAutochartistSignals,
+        sendDiffersSignalKeyLevels,
+        sendDiffersSignalFibonacci,
     } = props;
 
     const [signalContent, setSignalContent] = useState({
@@ -31,15 +31,18 @@ const SignalsTable = props => {
         fibonacciId: '',
         keyLevelsId: '',
         differenceKey: [],
+        differenceAllKey: [],
         chartKeysDiffer: '',
         differenceSdsValue: [],
         fibonacciKeysDiffer: '',
         keyLevelsKeysDiffer: '',
+        differenceAllSdsValue: [],
         differenceKeyFibonacci: [],
         differenceKeyKeyLevels: [],
         differenceMicroserviceValue: [],
         differenceSdsValueFibonacci: [],
         differenceSdsValueKeyLevels: [],
+        differenceAllMicroserviceValue: [],
         differenceMicroserviceValueKeyLevels: [],
         differenceMicroserviceValueFibonacci: [],
     })
@@ -69,7 +72,6 @@ const SignalsTable = props => {
 
     console.log({'AutoChart': getAutochartistSignals.chart}, {'AutoFibo': getAutochartistSignals.fibonacci}, {'AutoKey': getAutochartistSignals.keyLevels})
     console.log({'parsedSdsChart': parsedChartSdsSignal}, {'parsedFib': parsedFibonacciSdsSignal}, {'parsedKey': parsedKeyLevelsSdsSignal})
-
 
     const readyForCompareAutoChartSignal = getAutochartistSignals.chart.map(el => { //нужный массив авточарта
         delete el.dataFeed;
@@ -121,7 +123,6 @@ const SignalsTable = props => {
         const isKeyLevels = name === 'key levels';
         const isCompareAll = name === 'compare all';
 
-        console.log(signalContent.signalName, '555555555555555555555555555555555555555555555555555555555555500000000000000000');
         (isChart || isCompareAll) ?
             diffAuthoChartIds.map(id => {
                 const autoChart = readyForCompareAutoChartSignal.find(element => element.resultUid === id);
@@ -272,12 +273,7 @@ const SignalsTable = props => {
 
             return changes(autoKeyLevels, sDsKeyLevels);
         }
-
-        console.log('chartRes', chartPatternResultObj);
-        console.log('fiboRes', fibonacciPatternResultObj);
-        console.log('sdsRes', keyLevelPatternResultObj);
-        console.log('NAME', name);
-
+        
         setSignalContent(preValue => ({
             ...preValue,
             chartId: chartPatternResult.map(el => el.id),
@@ -289,9 +285,11 @@ const SignalsTable = props => {
             sdsResult: chartPatternResult.map(el => el.sDsChart.resultUid),
             signalName: name,
         }));
+
         if (!chartPatternResult.length && !fibonacciPatternResult.length && !keyLevelsPatternResult.length) {
             return;
         }
+
         (isCompareAll || isChart) && sendDiffersSignalChart(chartPatternResultObj);
         (isCompareAll || isFibonacci) && sendDiffersSignalFibonacci(fibonacciPatternResultObj);
         (isCompareAll || isKeyLevels) && sendDiffersSignalKeyLevels(keyLevelPatternResultObj);
@@ -304,62 +302,79 @@ const SignalsTable = props => {
     const signalsChartId = Object.keys(getDifferCharts)
     const signalsFibonacciId = Object.keys(getDifferFibonacci)
     const signalsKeyLevelsId = Object.keys(getDifferKeyLevels)
-    console.log('dsadsadsasadsad', getDifferFibonacci)
+    const allSignalsId = [...signalsChartId, ...signalsFibonacciId, ...signalsKeyLevelsId];
+    const getDifferenceAll =  {...getDifferCharts, ...getDifferFibonacci, ...getDifferKeyLevels};
 
     const showDiff = (event) => {
         let differenceKey;
+        let differenceAllKey;
         let differenceSdsValue;
+        let differenceAllSdsValue;
         let differenceKeyKeyLevels;
         let differenceKeyFibonacci;
         let differenceSdsValueFibonacci;
         let differenceMicroserviceValue;
         let differenceSdsValueKeyLevels;
+        let differenceAllMicroserviceValue;
         let differenceMicroserviceValueFibonacci;
         let differenceMicroserviceValueKeyLevels;
 
-        if (signalsChartId.length) {
+        if (signalContent.signalName === 'chart') {
             differenceKey = Object.keys(getDifferCharts).length && Object.keys(getDifferCharts?.[event.target.innerText]?.microservice);
             differenceSdsValue = Object.keys(getDifferCharts).length && Object.values(getDifferCharts?.[event.target.innerText]?.sds);
             differenceMicroserviceValue = Object.keys(getDifferCharts).length && Object.values(getDifferCharts?.[event.target.innerText]?.microservice);
-        } else if (signalsFibonacciId.length) {
+        } else if (signalContent.signalName === 'fibonacci') {
             differenceKeyFibonacci = Object.keys(getDifferFibonacci).length && Object.keys(getDifferFibonacci?.[event.target.innerText]?.microservice);
             differenceSdsValueFibonacci = Object.keys(getDifferFibonacci).length && Object.values(getDifferFibonacci?.[event.target.innerText]?.sds);
             differenceMicroserviceValueFibonacci = Object.keys(getDifferFibonacci).length && Object.values(getDifferFibonacci?.[event.target.innerText]?.microservice);
-        } else if (signalsKeyLevelsId.length) {
+        } else if (signalContent.signalName === 'key levels') {
             differenceKeyKeyLevels = Object.keys(getDifferKeyLevels).length && Object.keys(getDifferKeyLevels?.[event.target.innerText]?.microservice);
             differenceSdsValueKeyLevels = Object.keys(getDifferKeyLevels).length && Object.values(getDifferKeyLevels?.[event.target.innerText]?.sds);
             differenceMicroserviceValueKeyLevels = Object.keys(getDifferKeyLevels).length && Object.values(getDifferKeyLevels?.[event.target.innerText]?.microservice);
+        } else if(signalContent.signalName === 'compare all') {
+            differenceAllKey = Object.keys(getDifferenceAll).length && Object.keys(getDifferenceAll?.[event.target.innerText]?.microservice);
+            differenceAllSdsValue = Object.keys(getDifferenceAll).length && Object.values(getDifferenceAll?.[event.target.innerText]?.sds);
+            differenceAllMicroserviceValue = Object.keys(getDifferenceAll).length && Object.values(getDifferenceAll?.[event.target.innerText]?.microservice);
         }
+
         setSignalContent(prevState => ({
             ...prevState,
             differenceKey,
+            differenceAllKey,
             differenceSdsValue,
-            differenceKeyFibonacci,
+            differenceAllSdsValue,
             differenceKeyKeyLevels,
-            differenceMicroserviceValue,
+            differenceKeyFibonacci,
             differenceSdsValueKeyLevels,
             differenceSdsValueFibonacci,
-            differenceMicroserviceValueKeyLevels,
+            differenceMicroserviceValue,
+            differenceAllMicroserviceValue,
             differenceMicroserviceValueFibonacci,
+            differenceMicroserviceValueKeyLevels,
         }))
     }
 
     const signalTitle = [
         {label: "signals id", id:  signalsChartId, getDifferCharts, showDiff,
-            signalsFibonacciId, signalsKeyLevelsId
+            signalsFibonacciId, signalsKeyLevelsId, allSignalsId,
         },
         {label: "name field", differenceArray: signalContent.differenceKey,
             differenceKeyFibonacci: signalContent.differenceKeyFibonacci,
             differenceKeyKeyLevels: signalContent.differenceKeyKeyLevels,
+            differenceAllSignals: signalContent.differenceAllKey,
+
         },
         {label: "autochartist", differenceMicroserviceValue: signalContent.differenceMicroserviceValue,
-            differenceMicroserviceValueFibonacci: signalContent.differenceMicroserviceValueFibonacci,differenceMicroserviceValueKeyLevels:signalContent.differenceMicroserviceValueKeyLevels
+            differenceMicroserviceValueFibonacci: signalContent.differenceMicroserviceValueFibonacci,
+            differenceMicroserviceValueKeyLevels:signalContent.differenceMicroserviceValueKeyLevels,
+            differenceAllMicroserviceValue: signalContent.differenceAllMicroserviceValue,
         },
         {label: "sds", differenceSdsValue: signalContent.differenceSdsValue,
-            differenceSdsValueFibonacci: signalContent.differenceSdsValueFibonacci, differenceSdsValueKeyLevels: signalContent.differenceSdsValueKeyLevels
+            differenceSdsValueFibonacci: signalContent.differenceSdsValueFibonacci,
+            differenceSdsValueKeyLevels: signalContent.differenceSdsValueKeyLevels,
+            differenceAllSdsValue: signalContent.differenceAllSdsValue,
         },
     ];
-
 
     return (
         <ThemeProvider theme={themeTable}>
@@ -367,22 +382,28 @@ const SignalsTable = props => {
                 <TableModule data-at={'Table-Container__tableModule'}>
                     <TableWrapper data-at={'TableModule__tableWrapper'}>
                         {signalTitle.map((title, index) =>
-                            <Table key={index} title={title.label}
+                            <Table key={index}
+                                   title={title.label}
                                    showDiff={title.showDiff}
                                    signalName={signalContent.signalName}
                                    getDifferCharts={title.getDifferCharts}
+                                   differenceAllId={title.allSignalsId}
                                    differenceArray={title.differenceArray}
+                                   differenceAllKey={title.differenceAllSignals}
                                    getDifferChartsId={title.id}
                                    differenceSdsValue={title.differenceSdsValue}
                                    signalsFibonacciId={title.signalsFibonacciId}
                                    signalsKeyLevelsId={title.signalsKeyLevelsId}
+                                   differenceAllSdsValue={title.differenceAllSdsValue}
                                    differenceKeyFibonacci={title.differenceKeyFibonacci}
                                    differenceKeyKeyLevels={title.differenceKeyKeyLevels}
-                                   differenceMicroserviceValue={title.differenceMicroserviceValue}
-                                   differenceSdsValueFibonacci={title.differenceSdsValueFibonacci}
                                    differenceSdsValueKeyLevels={title.differenceSdsValueKeyLevels}
-                                   differenceMicroserviceValueFibonacci={title.differenceMicroserviceValueFibonacci}
+                                   differenceSdsValueFibonacci={title.differenceSdsValueFibonacci}
+                                   differenceMicroserviceValue={title.differenceMicroserviceValue}
+                                   differenceAllMicroserviceValue={title.differenceAllMicroserviceValue}
                                    differenceMicroserviceValueKeyLevels={title.differenceMicroserviceValueKeyLevels}
+                                   differenceMicroserviceValueFibonacci={title.differenceMicroserviceValueFibonacci}
+
                             />)}
                     </TableWrapper>
                     <CompareButtonWrapper data-at={'TableModule__compareButtonWrapper'}>
@@ -404,8 +425,4 @@ const SignalsTable = props => {
 }
 
 export default React.memo(SignalsTable);
-
-// const diffChartPattern = getAutochartistSignals.chart.filter(item => parsedChartSdsSignal.every(i => item.resultUid !== i.resultUid))
-// const diffFibonacciPattern = getAutochartistSignals.fibonacci.filter(item => parsedFibonacciSdsSignal.every(i => item.resultUid !== i.resultUid));
-// const diffKeyLevelsPattern = getAutochartistSignals.keyLevels.filter(item => parsedKeyLevelsSdsSignal.every(i => item.resultUid !== i.resultUid));
 

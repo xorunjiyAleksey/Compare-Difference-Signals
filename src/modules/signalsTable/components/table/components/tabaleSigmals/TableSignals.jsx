@@ -7,7 +7,6 @@ const TableSignals = props => {
         showDiff,
         signalName,
     } = props;
-
     const {
         diffId = [],
         diffKeys = [],

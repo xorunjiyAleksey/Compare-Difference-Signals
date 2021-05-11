@@ -11,21 +11,20 @@ const Table = props => {
         title,
         showDiff,
         signalName,
-        signalContent,
-        getDifferCharts,
-        signalContentId,
         differenceArray,
-        signalContentKeys,
+        differenceAllId,
+        differenceAllKey,
         getDifferChartsId,
-        getDifferChartKeys,
         differenceSdsValue,
         signalsFibonacciId,
         signalsKeyLevelsId,
+        differenceAllSdsValue,
         differenceKeyFibonacci,
         differenceKeyKeyLevels,
         differenceSdsValueFibonacci,
         differenceMicroserviceValue,
         differenceSdsValueKeyLevels,
+        differenceAllMicroserviceValue,
         differenceMicroserviceValueKeyLevels,
         differenceMicroserviceValueFibonacci,
     } = props;
@@ -51,39 +50,32 @@ const Table = props => {
         diffMicroserviceValue: differenceMicroserviceValueKeyLevels
     }
 
+    const allSignals = {
+        diffId: differenceAllId,
+        diffKeys: differenceAllKey,
+        diffSdsValues: differenceAllSdsValue,
+        diffMicroserviceValue: differenceAllMicroserviceValue
+    }
+
     const signals = {
         'chart': chart,
         'fibonacci': fibonacci,
         'key levels': keyLevels,
-        'compare all': [chart, fibonacci, keyLevels]
+        'compare all': allSignals
     }
 
-    console.log('signalName', signalName);
-    console.log('signals', signals);
-    console.log('signals[signalName]', signals[signalName]);
-
-    const selectedSignal = signals[signalName];
-
+    let selectedSignal = signals[signalName];
 
     return (
         <TableColumn data-at={'TableWrapper__TableColumn'}>
             <TableColumn.title children={title}/>
             <TableColumn.column>
-                {signalName === 'compare all' ?
-                    selectedSignal.map(signal =>
-                        <TableSignals
-                            signals={signal}
-                            showDiff={showDiff}
-                            signalName={signalName}
-                        />
-                    ) :
-                    <TableSignals
-                        signals={selectedSignal}
-                        showDiff={showDiff}
-                        signalName={signalName}
-                    />
-                }
-                 </TableColumn.column>
+                <TableSignals
+                    signals={selectedSignal}
+                    showDiff={showDiff}
+                    signalName={signalName}
+                />
+            </TableColumn.column>
         </TableColumn>
     )
 }
