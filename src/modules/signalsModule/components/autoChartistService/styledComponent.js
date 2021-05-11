@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   width: 50%;
   display: flex;
   justify-content: space-between;
+  margin-left: 35px;
 `;
 export const WrapperContainer = styled.div`
   width: 100%;
@@ -20,10 +21,11 @@ export const LabelDiv = styled.div`
 export const Label = styled.label`
   background-color: ${props => props.theme.pagebackcolor};
   color: ${props => props.theme.textColor};
+  font-size: 21px;
 `;
 
 export const InputWrapper = styled.div`
-  width: 100%;
+  width: 90%;
   height: 48%;
   display: flex;
   flex-direction: column;
@@ -57,6 +59,7 @@ export const ButtonDiv = styled.div`
 
 export const ButtonWrapper = styled.div`
   width: 35%;
+  margin-right: 70px;
 `;
 
 export const StatusWrapper = styled.div`

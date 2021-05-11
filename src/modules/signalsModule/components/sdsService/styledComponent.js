@@ -15,11 +15,13 @@ export const LabelDiv = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
+
 `;
 
 export const Label = styled.label`
     background-color: ${props => props.theme.pagebackcolor};
     color: ${props => props.theme.textColor};
+    font-size: 21px;
 `;
 
 export const InputWrapper = styled.div`
@@ -55,6 +57,6 @@ export const ButtonDiv = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-  width: 35%;
+  width: 27%;
 `;
 
