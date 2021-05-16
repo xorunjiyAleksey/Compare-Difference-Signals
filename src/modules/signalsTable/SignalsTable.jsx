@@ -70,9 +70,6 @@ const SignalsTable = props => {
     const parsedFibonacciSdsSignal = getSdsSignals.fibonacci.map(el => JSON.parse(el));
     const parsedKeyLevelsSdsSignal = getSdsSignals.keyLevels.map(el => JSON.parse(el));
 
-    console.log({'AutoChart': getAutochartistSignals.chart}, {'AutoFibo': getAutochartistSignals.fibonacci}, {'AutoKey': getAutochartistSignals.keyLevels})
-    console.log({'parsedSdsChart': parsedChartSdsSignal}, {'parsedFib': parsedFibonacciSdsSignal}, {'parsedKey': parsedKeyLevelsSdsSignal})
-
     const readyForCompareAutoChartSignal = getAutochartistSignals.chart.map(el => { //нужный массив авточарта
         delete el.dataFeed;
         delete el.clickThroughUrl;
@@ -273,7 +270,7 @@ const SignalsTable = props => {
 
             return changes(autoKeyLevels, sDsKeyLevels);
         }
-        
+
         setSignalContent(preValue => ({
             ...preValue,
             chartId: chartPatternResult.map(el => el.id),
@@ -294,11 +291,15 @@ const SignalsTable = props => {
         (isCompareAll || isFibonacci) && sendDiffersSignalFibonacci(fibonacciPatternResultObj);
         (isCompareAll || isKeyLevels) && sendDiffersSignalKeyLevels(keyLevelPatternResultObj);
 
-        sendSignalsByPattern(chartPatternResult, fibonacciPatternResult, keyLevelsPatternResult)
-            .then(() => {
-                console.log('successful');
-            });
+        setInterval(() => {
+            sendSignalsByPattern(chartPatternResultObj, fibonacciPatternResultObj, keyLevelPatternResultObj)
+                .then(() => {
+                    console.log('successful');
+                });
+        }, 90000)
+
     }
+
     const signalsChartId = Object.keys(getDifferCharts)
     const signalsFibonacciId = Object.keys(getDifferFibonacci)
     const signalsKeyLevelsId = Object.keys(getDifferKeyLevels)
