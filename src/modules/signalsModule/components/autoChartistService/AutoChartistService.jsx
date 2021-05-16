@@ -48,13 +48,11 @@ const AutoChartistService = props => {
             sid: signalData.sid,
             umid: signalData.umid
         };
-        setInterval(() => {
             getSignalsByPattern(patternData)
                 .then(signals => sendAutoSignal({
                     signals,
                     pattern,
                 }));
-        }, 60000)
     }
 
     return (
@@ -64,10 +62,9 @@ const AutoChartistService = props => {
                     <Label children={'Autochartist service'}></Label>
                 </LabelDiv>
                 <InputWrapper>
-                    {mockPlaceholder.map((input, id) =>
-                        <InputWrapper.input>
+                    {mockPlaceholder.map((input, name) =>
+                        <InputWrapper.input key={`${input.name}-${new Date().getTime().toString()}`}>
                             <CustomInput
-                                key={id}
                                 link={input?.link}
                                 name={input.name}
                                 placeholder={input.text}
@@ -80,10 +77,9 @@ const AutoChartistService = props => {
             <ButtonWrapper>
                 <LabelDiv/>
                 <ButtonDiv>
-                    {signalsButtons.map((button, id) =>
-                        <InputWrapper.button>
+                    {signalsButtons.map((button) =>
+                        <InputWrapper.button key={`${button.name}-${new Date().getTime().toString()}`} >
                             <Button
-                                key={id}
                                 name={button.name}
                                 label={button.label}
                                 handleClick={() => handleClick(button.name)}

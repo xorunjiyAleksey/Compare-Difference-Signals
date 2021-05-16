@@ -19,9 +19,8 @@ const TableSignals = props => {
             {
                 diffId.length ?
                     diffId.map(el =>
-                        <TableColumnContent>
-                            <TableColumnContent.content key={el}
-                                                        children={el}
+                        <TableColumnContent key={el.toString()}>
+                            <TableColumnContent.content children={el}
                                                         onClick={showDiff}
                             />
                         </TableColumnContent>
@@ -30,9 +29,8 @@ const TableSignals = props => {
             {
                 diffKeys.length ?
                 diffKeys.map(el =>
-                        <TableColumnContent>
-                            <TableColumnContent.content key={el}
-                                                        children={el}
+                        <TableColumnContent key={el}>
+                            <TableColumnContent.content children={el}
                                                         onClick={showDiff}
                             />
                         </TableColumnContent>
@@ -41,9 +39,8 @@ const TableSignals = props => {
             {
                 diffSdsValues.length ?
                 diffSdsValues.map(el =>
-                        <TableColumnContent>
-                            <TableColumnContent.content key={el}
-                                                        children={el}
+                        <TableColumnContent key={el.toString()}>
+                            <TableColumnContent.content children={el}
                                                         onClick={showDiff}
                             />
                         </TableColumnContent>
@@ -52,9 +49,8 @@ const TableSignals = props => {
             {
                 diffMicroserviceValue.length ?
                 diffMicroserviceValue.map(el =>
-                        <TableColumnContent>
-                            <TableColumnContent.content key={el}
-                                                        children={el}
+                        <TableColumnContent key={el.toString()}>
+                            <TableColumnContent.content children={el}
                                                         onClick={showDiff}
                             />
                         </TableColumnContent>

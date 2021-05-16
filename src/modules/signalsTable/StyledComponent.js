@@ -24,7 +24,7 @@ export const CompareButtonWrapper = styled.div`
 `;
 
 CompareButtonWrapper.button = styled.div`
-  height: 35px;
+  height: 55px;
   margin-bottom: 10px;
   background-color: ${props => props.theme.buttonColor};
   

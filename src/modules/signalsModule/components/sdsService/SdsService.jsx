@@ -72,13 +72,11 @@ const SdsService = props => {
             parth: inputStatus.parth,
             pattern: inputStatus[pattern],
         };
-        setInterval(() => {
             getSignalsByPattern(patternData)
                 .then(signals => sendSdsSignal({
                     signals,
                     pattern,
                 }));
-        }, 60000)
     }
 
     return (
@@ -88,10 +86,9 @@ const SdsService = props => {
                     <Label children={'Sds service'}></Label>
                 </LabelDiv>
                 <InputWrapper>
-                    {mockPlaceholder.map((input, id) =>
-                        <InputWrapper.input>
+                    {mockPlaceholder.map((input) =>
+                        <InputWrapper.input key={`${input.name}-${new Date().getTime().toString()}`}>
                             <CustomInput
-                                key={id}
                                 link={input?.link}
                                 name={input.name}
                                 placeholder={input.text}
@@ -104,10 +101,9 @@ const SdsService = props => {
             <ButtonWrapper>
                 <LabelDiv/>
                 <ButtonDiv>
-                    {statusButtons.map((button, id) =>
-                        <InputWrapper.button>
+                    {statusButtons.map((button) =>
+                        <InputWrapper.button key={`${button.name}-${new Date().getTime().toString()}`}>
                             <Button
-                                key={id}
                                 name={button.name}
                                 label={button.label}
                                 handleClick={() => handleClick(button.name)}

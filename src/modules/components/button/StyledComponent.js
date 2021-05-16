@@ -5,6 +5,7 @@ export const ButtonWrapper = styled.button`
   height: 100%;
   outline: none;
   background-color: ${props => props.theme.getSignalsBtnColor};
+  padding: 5px;
 
   :hover {
     background-color: ${props => props.theme.pagebackcolor};
@@ -17,9 +18,11 @@ ButtonWrapper.text = styled.span`
   width: 100%;
   height: 100%;
   color: ${props => props.theme.textColor};
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  font-size: 18px;
+  font-size: 17px;
   
   :hover {
     border: 4px solid ${props => props.theme.getSignalsBtnColor};

@@ -291,12 +291,10 @@ const SignalsTable = props => {
         (isCompareAll || isFibonacci) && sendDiffersSignalFibonacci(fibonacciPatternResultObj);
         (isCompareAll || isKeyLevels) && sendDiffersSignalKeyLevels(keyLevelPatternResultObj);
 
-        setInterval(() => {
             sendSignalsByPattern(chartPatternResultObj, fibonacciPatternResultObj, keyLevelPatternResultObj)
                 .then(() => {
                     console.log('successful');
                 });
-        }, 90000)
 
     }
 
@@ -383,7 +381,7 @@ const SignalsTable = props => {
                 <TableModule data-at={'Table-Container__tableModule'}>
                     <TableWrapper data-at={'TableModule__tableWrapper'}>
                         {signalTitle.map((title, index) =>
-                            <Table key={index}
+                            <Table key={`${title.label}-${new Date().getTime().toString()}`}
                                    title={title.label}
                                    showDiff={title.showDiff}
                                    signalName={signalContent.signalName}
@@ -409,9 +407,9 @@ const SignalsTable = props => {
                     </TableWrapper>
                     <CompareButtonWrapper data-at={'TableModule__compareButtonWrapper'}>
                         {compareButtons.map((button, id) =>
-                            <CompareButtonWrapper.button>
+                            <CompareButtonWrapper.button key={`${button.name}-${new Date().getTime().toString()}`}>
                                 <Button
-                                    key={id}
+                                    key={`${button}_${id}`}
                                     name={button.name}
                                     handleClick={event => handleClick(button.name, event)}
                                     buttonLabel={button.buttonLabel}
