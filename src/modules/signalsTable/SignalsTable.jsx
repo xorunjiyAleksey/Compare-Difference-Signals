@@ -291,11 +291,12 @@ const SignalsTable = props => {
         (isCompareAll || isFibonacci) && sendDiffersSignalFibonacci(fibonacciPatternResultObj);
         (isCompareAll || isKeyLevels) && sendDiffersSignalKeyLevels(keyLevelPatternResultObj);
 
+        setInterval(() => {
             sendSignalsByPattern(chartPatternResultObj, fibonacciPatternResultObj, keyLevelPatternResultObj)
                 .then(() => {
                     console.log('successful');
                 });
-
+        }, 60000)
     }
 
     const signalsChartId = Object.keys(getDifferCharts)
