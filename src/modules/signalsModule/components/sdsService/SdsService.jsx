@@ -72,13 +72,11 @@ const SdsService = props => {
             parth: inputStatus.parth,
             pattern: inputStatus[pattern],
         };
-        setInterval(() => {
             getSignalsByPattern(patternData)
                 .then(signals => sendSdsSignal({
                     signals,
                     pattern,
                 }));
-        }, 10000)
     }
 
     return (

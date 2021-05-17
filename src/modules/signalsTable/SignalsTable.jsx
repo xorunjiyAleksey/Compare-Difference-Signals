@@ -111,7 +111,7 @@ const SignalsTable = props => {
     let chartPatternResultObj;
     let fibonacciPatternResultObj;
     let keyLevelPatternResultObj;
-
+    let procentChartPattern = [];
 
     const handleClick = (name, event) => {
         event.preventDefault();
@@ -152,17 +152,22 @@ const SignalsTable = props => {
                                             ...acc,
                                             [item]: sDsChart[item],
                                         }
-                                    }, {})
+                                    }, {}),
                             }
                         }
                     }
                 }
             }) : null;
 
+
+
         function differenceChart(autoChart, sDsChart) {
             function changes(autoChart, sDsChart) {
                 return _.transform(autoChart, (result, value, key) => {
-                    if (!_.isEqual(value, sDsChart[key])) {
+                    if (!_.isEqual(value, sDsChart[key]) && value % sDsChart[key] > 0.0001) {
+                        if (value > sDsChart[key]) {
+                            procentChartPattern.push(100 - (sDsChart[key] / value) * 100)
+                        }
                         result[key] = (_.isObject(value) && _.isObject(sDsChart[key])) ? changes(value, sDsChart[key]) : value
                     }
                 });
@@ -250,7 +255,7 @@ const SignalsTable = props => {
         function differenceFibonacci(autoFibonacci, sDsFibonacci) {
             function changes(autoFibonacci, sDsFibonacci) {
                 return _.transform(autoFibonacci, (result, value, key) => {
-                    if (!_.isEqual(value, sDsFibonacci[key])) {
+                    if (!_.isEqual(value, sDsFibonacci[key]) && value % sDsFibonacci[key] > 0.0001) {
                         result[key] = (_.isObject(value) && _.isObject(sDsFibonacci[key])) ? changes(value, sDsFibonacci[key]) : value
                     }
                 });
@@ -262,7 +267,7 @@ const SignalsTable = props => {
         function differenceKeyLevels(autoKeyLevels, sDsKeyLevels) {
             function changes(autoKeyLevels, sDsKeyLevels) {
                 return _.transform(autoKeyLevels, (result, value, key) => {
-                    if (!_.isEqual(value, sDsKeyLevels[key])) {
+                    if (!_.isEqual(value, sDsKeyLevels[key]) && value % sDsKeyLevels[key] > 0.0001) {
                         result[key] = (_.isObject(value) && _.isObject(sDsKeyLevels[key])) ? changes(value, sDsKeyLevels[key]) : value
                     }
                 });
@@ -286,17 +291,15 @@ const SignalsTable = props => {
         if (!chartPatternResult.length && !fibonacciPatternResult.length && !keyLevelsPatternResult.length) {
             return;
         }
-
         (isCompareAll || isChart) && sendDiffersSignalChart(chartPatternResultObj);
         (isCompareAll || isFibonacci) && sendDiffersSignalFibonacci(fibonacciPatternResultObj);
         (isCompareAll || isKeyLevels) && sendDiffersSignalKeyLevels(keyLevelPatternResultObj);
 
-        setInterval(() => {
+
             sendSignalsByPattern(chartPatternResultObj, fibonacciPatternResultObj, keyLevelPatternResultObj)
                 .then(() => {
                     console.log('successful');
                 });
-        }, 300000)
     }
 
     const signalsChartId = Object.keys(getDifferCharts)

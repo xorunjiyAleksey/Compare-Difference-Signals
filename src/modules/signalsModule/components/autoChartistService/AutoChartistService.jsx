@@ -22,7 +22,7 @@ const AutoChartistService = props => {
     } = props;
     const [signalData, setSignalData] = useState({
         umid: '335c2140586344c89a6d430d7bb92f7a',
-        sid: '603a830b-1fe9-4139-9388-7d119a030b1e',
+        sid: '60146c91-b098-453b-ba59-81c4a1c8fa3c',
         parth: 'https://uat-services.umarkets.info/srvgtw/autochartist/',
         chart: 'v1/chartpatterns',
         fibonacci: 'v1/fibonaccipatterns',
@@ -48,13 +48,11 @@ const AutoChartistService = props => {
             sid: signalData.sid,
             umid: signalData.umid
         };
-        setInterval(() => {
             getSignalsByPattern(patternData)
                 .then(signals => sendAutoSignal({
                     signals,
                     pattern,
                 }));
-        }, 10000);
     }
 
     return (
