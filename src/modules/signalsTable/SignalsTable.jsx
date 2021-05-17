@@ -296,7 +296,7 @@ const SignalsTable = props => {
                 .then(() => {
                     console.log('successful');
                 });
-        }, 60000)
+        }, 300000)
     }
 
     const signalsChartId = Object.keys(getDifferCharts)

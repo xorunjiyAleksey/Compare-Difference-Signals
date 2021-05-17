@@ -78,7 +78,7 @@ const SdsService = props => {
                     signals,
                     pattern,
                 }));
-        }, 48000)
+        }, 10000)
     }
 
     return (

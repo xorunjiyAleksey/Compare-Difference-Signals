@@ -54,7 +54,7 @@ const AutoChartistService = props => {
                     signals,
                     pattern,
                 }));
-        }, 480000);
+        }, 10000);
     }
 
     return (
