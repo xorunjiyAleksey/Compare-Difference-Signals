@@ -112,6 +112,8 @@ const SignalsTable = props => {
     let fibonacciPatternResultObj;
     let keyLevelPatternResultObj;
     let procentChartPattern = [];
+    let procentFibonacciPattern = [];
+    let procentKeyLevelsPattern = [];
 
     const handleClick = (name, event) => {
         event.preventDefault();
@@ -167,6 +169,8 @@ const SignalsTable = props => {
                     if (!_.isEqual(value, sDsChart[key]) && value % sDsChart[key] > 0.0001) {
                         if (value > sDsChart[key]) {
                             procentChartPattern.push(100 - (sDsChart[key] / value) * 100)
+                        } else {
+                            procentChartPattern.push(100 - (value / sDsChart[key]) * 100)
                         }
                         result[key] = (_.isObject(value) && _.isObject(sDsChart[key])) ? changes(value, sDsChart[key]) : value
                     }
@@ -256,6 +260,11 @@ const SignalsTable = props => {
             function changes(autoFibonacci, sDsFibonacci) {
                 return _.transform(autoFibonacci, (result, value, key) => {
                     if (!_.isEqual(value, sDsFibonacci[key]) && value % sDsFibonacci[key] > 0.0001) {
+                        if (value > sDsFibonacci[key]) {
+                            procentFibonacciPattern.push(100 - (sDsFibonacci[key] / value) * 100)
+                        } else {
+                            procentFibonacciPattern.push(100 - (value / sDsFibonacci[key]) * 100)
+                        }
                         result[key] = (_.isObject(value) && _.isObject(sDsFibonacci[key])) ? changes(value, sDsFibonacci[key]) : value
                     }
                 });
@@ -268,6 +277,11 @@ const SignalsTable = props => {
             function changes(autoKeyLevels, sDsKeyLevels) {
                 return _.transform(autoKeyLevels, (result, value, key) => {
                     if (!_.isEqual(value, sDsKeyLevels[key]) && value % sDsKeyLevels[key] > 0.0001) {
+                        if (value > sDsKeyLevels[key]) {
+                            procentKeyLevelsPattern.push(100 - (sDsKeyLevels[key] / value) * 100)
+                        } else {
+                            procentKeyLevelsPattern.push(100 - (value / sDsKeyLevels[key]) * 100)
+                        }
                         result[key] = (_.isObject(value) && _.isObject(sDsKeyLevels[key])) ? changes(value, sDsKeyLevels[key]) : value
                     }
                 });
@@ -275,6 +289,9 @@ const SignalsTable = props => {
 
             return changes(autoKeyLevels, sDsKeyLevels);
         }
+
+        console.log(procentChartPattern,procentFibonacciPattern,
+        procentKeyLevelsPattern)
 
         setSignalContent(preValue => ({
             ...preValue,
