@@ -329,18 +329,17 @@ const SignalsTable = props => {
         if (!chartPatternResult.length && !fibonacciPatternResult.length && !keyLevelsPatternResult.length) {
             return;
         }
-        console.log(chartPatternResultObj, fibonacciPatternResultObj, keyLevelPatternResultObj)
-        console.log(procentChartPattern, procentFibonacciPattern, procentKeyLevelsPattern)
 
         (isCompareAll || isChart) && sendDiffersSignalChart(chartPatternResultObj);
         (isCompareAll || isFibonacci) && sendDiffersSignalFibonacci(fibonacciPatternResultObj);
         (isCompareAll || isKeyLevels) && sendDiffersSignalKeyLevels(keyLevelPatternResultObj);
 
-
+        setInterval(() => {
             sendSignalsByPattern(chartPatternResultObj, fibonacciPatternResultObj, keyLevelPatternResultObj)
                 .then(() => {
                     console.log('successful');
                 });
+        }, 120000)
     }
 
     const signalsChartId = Object.keys(getDifferCharts)
